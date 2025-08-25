@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIDoks - Modernização de Legado com GenAI</title>
+    <title>AI.Doks - Modernização de Legado com GenAI</title>
     <style>
         :root {
             --primary-color: #FFB800;
@@ -251,22 +251,79 @@
             border: 1px solid var(--border-color);
             padding: 20px;
         }
-
-        /* --- Seção de Módulos (Grid) --- */
-        .modules-section {
+        
+        /* --- Seção Armadilhas --- */
+        .traps-section {
             padding: 100px 0;
             text-align: center;
         }
         
-        .modules-section h2 {
+        .traps-section h2 {
             font-size: 2.8rem;
             margin-bottom: 20px;
         }
         
-        .modules-section .section-subtitle {
+        .traps-section .section-subtitle {
             font-size: 1.1rem;
             color: var(--text-secondary);
-            max-width: 600px;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+        
+        .traps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .trap-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            background: var(--dark-bg-secondary);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .trap-icon {
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+        
+        .trap-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .trap-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.2rem;
+        }
+        
+        .trap-card p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        /* --- Seção de Módulos (Grid) --- */
+        .modules-section, .methodology-section, .value-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .modules-section h2, .methodology-section h2, .value-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .modules-section .section-subtitle, .methodology-section .section-subtitle, .value-section .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
             margin: 0 auto 60px auto;
         }
 
@@ -310,6 +367,43 @@
             color: var(--text-secondary);
             line-height: 1.6;
         }
+        
+        /* --- Nova Seção Metodologia --- */
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .methodology-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            background: var(--dark-bg-secondary);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .methodology-step .step-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .methodology-step .step-content h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.25rem;
+        }
+        
+        .methodology-step .step-content p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
 
         /* --- Seção de Benefícios (Frases) --- */
         .benefits-section {
@@ -344,6 +438,11 @@
         .benefit-icon svg {
             width: 48px;
             height: 48px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
         }
 
         .benefit-card p {
@@ -505,7 +604,7 @@
         }
 
         @media (max-width: 576px) {
-            .modules-grid, .benefits-grid {
+            .modules-grid, .benefits-grid, .traps-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -516,10 +615,11 @@
     <!-- Navegação -->
     <header class="navbar">
         <div class="container">
-            <div class="logo">AIDoks<span class="highlight">.</span></div>
+            <div class="logo">AI<span class="highlight">.</span>Doks</div>
             <div class="nav-menu">
                 <nav class="nav-links">
                     <a href="#about"><span lang="pt-BR">A Plataforma</span><span lang="en">The Platform</span></a>
+                    <a href="#methodology"><span lang="pt-BR">Metodologia</span><span lang="en">Methodology</span></a>
                     <a href="#modules"><span lang="pt-BR">Módulos</span><span lang="en">Modules</span></a>
                     <a href="#faq">FAQ</a>
                 </nav>
@@ -593,8 +693,8 @@
             <div class="container" style="display:flex; align-items:center; gap: 80px;">
                 <div class="feature-text">
                     <div class="eyebrow"><span lang="pt-BR">A PLATAFORMA</span><span lang="en">THE PLATFORM</span></div>
-                    <h2><span lang="pt-BR">A fonte da verdade não é mais uma caixa-preta</span><span lang="en">The source of truth is no longer a black box</span></h2>
-                    <p><span lang="pt-BR">O maior desafio não é escrever código novo, mas entender o que já existe. AIDoks vai direto na fonte da verdade — seu código-fonte — para extrair a lógica de negócio que move sua empresa. Transformamos complexidade técnica em conhecimento acionável, permitindo que suas equipes evoluam sistemas críticos com segurança e velocidade inéditas.</span><span lang="en">The biggest challenge isn't writing new code; it's understanding what already exists. AIDoks goes directly to the source of truth—your source code—to extract the business logic that drives your company. We turn technical complexity into actionable knowledge, enabling your teams to evolve critical systems with unprecedented safety and speed.</span></p>
+                    <h2><span lang="pt-BR">Transforme documentação em um ativo de negócio</span><span lang="en">Turn documentation into a business asset</span></h2>
+                    <p><span lang="pt-BR">AI.Doks acelera a modernização de aplicações legadas por meio da análise de aplicações, extração de regras de negócios e transformação de código com tecnologia de IA. Nossa missão é acelerar e reduzir o tempo, o risco e o custo da modernização de aplicações em uma única plataforma.</span><span lang="en">AI.Doks accelerates legacy modernization through application analysis, business rules extraction and AI-powered code transformation. Our mission is to accelerate and reduce the time, risk, and cost of application modernization on a single platform.</span></p>
                 </div>
                 <div class="feature-visual">
                     <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
@@ -607,93 +707,160 @@
                 </div>
             </div>
         </section>
-
-        <!-- Feature 2: Solução -->
-        <section class="feature-section fade-in-section">
-            <div class="container" style="display:flex; align-items:center; gap: 80px; flex-direction: row-reverse;">
-                <div class="feature-text">
-                    <div class="eyebrow"><span lang="pt-BR">A SOLUÇÃO</span><span lang="en">THE SOLUTION</span></div>
-                    <h2><span lang="pt-BR">Modernize com dados, não com achismos</span><span lang="en">Modernize with data, not guesswork</span></h2>
-                    <p><span lang="pt-BR">Substitua a incerteza por um mapa completo da complexidade, dependências e tecnologias do seu sistema. Reduza os custos e o tempo de projetos de modernização em até 60%, garantindo uma migração suave para arquiteturas modernas e preservando a lógica de negócio que diferencia sua empresa no mercado.</span><span lang="en">Replace uncertainty with a complete map of your system's complexity, dependencies, and technologies. Reduce modernization project costs and timelines by up to 60%, ensuring a smooth migration to modern architectures while preserving the business logic that sets your company apart.</span></p>
-                </div>
-                <div class="feature-visual">
-                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="300" rx="12" fill="#252525"/>
-                        <path d="M 50 250 C 150 150, 250 150, 350 50" stroke="#4CAF50" stroke-width="6" fill="none"/>
-                        <circle cx="350" cy="50" r="10" fill="#4CAF50"/>
-                        <text x="80" y="80" font-family="sans-serif" font-size="24" fill="#a0a0a0">Efficiency</text>
-                        <text x="200" y="220" font-family="sans-serif" font-size="24" fill="#a0a0a0">Growth</text>
-                    </svg>
+        
+        <!-- Seção Armadilhas -->
+        <section class="traps-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Evite as Armadilhas da Modernização Manual</span><span lang="en">Avoid the Pitfalls of Manual Modernization</span></h2>
+                <p class="section-subtitle"><span lang="pt-BR">A abordagem tradicional para modernizar sistemas legados é repleta de riscos que geram custos, atrasos e resultados que não atendem às expectativas do negócio.</span><span lang="en">The traditional approach to modernizing legacy systems is fraught with risks that lead to cost overruns, delays, and outcomes that don't meet business expectations.</span></p>
+                <div class="traps-grid">
+                    <div class="trap-card">
+                        <div class="trap-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6.75l-1.5 1.5-1.5-1.5M13.5 12.75l-1.5 1.5-1.5-1.5M13.5 18.75l-1.5 1.5-1.5-1.5M4.5 6.75l1.5 1.5 1.5-1.5M4.5 12.75l1.5 1.5 1.5-1.5M4.5 18.75l1.5 1.5 1.5-1.5m9-15l-1.5 1.5-1.5-1.5M18 12.75l-1.5 1.5-1.5-1.5M18 18.75l-1.5 1.5-1.5-1.5" /></svg></div>
+                        <div>
+                            <h3><span lang="pt-BR">Tradução Superficial do Código</span><span lang="en">Superficial Code Translation</span></h3>
+                            <p><span lang="pt-BR">O processo foca apenas na conversão da sintaxe ("lift and shift"), sem redesenhar ou otimizar a arquitetura legada.</span><span lang="en">The process focuses only on syntax conversion ("lift and shift"), without redesigning or optimizing the legacy architecture.</span></p>
+                        </div>
+                    </div>
+                    <div class="trap-card">
+                        <div class="trap-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg></div>
+                        <div>
+                            <h3><span lang="pt-BR">Criação de Nova Dívida Técnica</span><span lang="en">Creation of New Technical Debt</span></h3>
+                            <p><span lang="pt-BR">O código gerado é, frequentemente, complexo e de difícil manutenção, trocando um problema antigo por um novo.</span><span lang="en">The generated code is often complex and difficult to maintain, trading one old problem for a new one.</span></p>
+                        </div>
+                    </div>
+                    <div class="trap-card">
+                        <div class="trap-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg></div>
+                        <div>
+                            <h3><span lang="pt-BR">Dependência de Tecnologias Proprietárias</span><span lang="en">Dependence on Proprietary Technologies</span></h3>
+                            <p><span lang="pt-BR">Muitas soluções forçam o uso de "runtimes" específicos, criando um novo e arriscado aprisionamento tecnológico (vendor lock-in).</span><span lang="en">Many solutions force the use of specific "runtimes," creating new and risky technological lock-in.</span></p>
+                        </div>
+                    </div>
+                    <div class="trap-card">
+                        <div class="trap-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg></div>
+                        <div>
+                            <h3><span lang="pt-BR">Perpetuação da Falta de Visibilidade</span><span lang="en">Perpetuation of Lack of Visibility</span></h3>
+                            <p><span lang="pt-BR">A modernização ocorre sem gerar documentação de negócio, e o novo sistema continua sendo uma "caixa-preta".</span><span lang="en">Modernization occurs without generating business documentation, and the new system remains a "black box."</span></p>
+                        </div>
+                    </div>
+                     <div class="trap-card">
+                        <div class="trap-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg></div>
+                        <div>
+                            <h3><span lang="pt-BR">Baixo Retorno sobre o Investimento</span><span lang="en">Low Return on Investment</span></h3>
+                            <p><span lang="pt-BR">O resultado não resolve os problemas de fundo (performance, escalabilidade, regras de negócio), entregando pouco valor estratégico.</span><span lang="en">The result does not solve the underlying problems (performance, scalability, business rules), delivering little strategic value.</span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de Módulos -->
-        <section id="modules" class="modules-section fade-in-section">
+        <!-- Seção de Metodologia -->
+        <section id="methodology" class="methodology-section fade-in-section">
             <div class="container">
-                <h2><span lang="pt-BR">Uma jornada de modernização completa</span><span lang="en">A complete modernization journey</span></h2>
-                <p class="section-subtitle"><span lang="pt-BR">Nossos módulos se adaptam à sua necessidade, oferecendo desde um diagnóstico rápido até a transformação completa do seu sistema.</span><span lang="en">Our modules adapt to your needs, offering everything from a quick diagnosis to the complete transformation of your system.</span></p>
+                <h2><span lang="pt-BR">Como Funciona: Nosso Processo Guiado</span><span lang="en">How It Works: Our Guided Process</span></h2>
+                <p class="section-subtitle"><span lang="pt-BR">Nossa metodologia é uma jornada flexível, estruturada em módulos independentes que se adaptam à fase e à necessidade de cada cliente.</span><span lang="en">Our methodology is a flexible journey, structured in independent modules that adapt to the phase and needs of each client.</span></p>
+                <div class="methodology-grid">
+                    <div class="methodology-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3><span lang="pt-BR">Diagnóstico e Mapeamento</span><span lang="en">Diagnostics & Mapping</span></h3>
+                            <p><span lang="pt-BR">Identificação e avaliação de softwares legados para definir o escopo da modernização.</span><span lang="en">Identification and evaluation of legacy software to define the scope of modernization.</span></p>
+                        </div>
+                    </div>
+                    <div class="methodology-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3><span lang="pt-BR">Engenharia Reversa</span><span lang="en">Reverse Engineering</span></h3>
+                            <p><span lang="pt-BR">Desconstrução do sistema com GenAI para extrair e documentar as regras de negócio.</span><span lang="en">Deconstruction of the system with GenAI to extract and document business rules.</span></p>
+                        </div>
+                    </div>
+                    <div class="methodology-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3><span lang="pt-BR">Organização e Refatoração</span><span lang="en">Organization & Refactoring</span></h3>
+                            <p><span lang="pt-BR">Revisão e estruturação do código com base na lógica de negócio estabelecida.</span><span lang="en">Review and structuring of the code based on the established business logic.</span></p>
+                        </div>
+                    </div>
+                     <div class="methodology-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3><span lang="pt-BR">Modernização Tecnológica</span><span lang="en">Technological Modernization</span></h3>
+                            <p><span lang="pt-BR">Migração da aplicação para plataformas modernas com geração de código e testes automatizados.</span><span lang="en">Migration of the application to modern platforms with code generation and automated tests.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção de Valor Gerado -->
+        <section class="value-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">O Valor Gerado: Da Incerteza à Decisão Estratégica</span><span lang="en">The Value Generated: From Uncertainty to Strategic Decision</span></h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                        </div>
+                        <h3><span lang="pt-BR">Documentação Automatizada</span><span lang="en">Automated Documentation</span></h3>
+                        <p><span lang="pt-BR">Crie uma base de conhecimento completa e confiável, independente da linguagem ou da existência de especialistas.</span><span lang="en">Create a complete and reliable knowledge base, independent of language or the existence of specialists.</span></p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                        </div>
+                        <h3><span lang="pt-BR">Redução de Custos e Prazos</span><span lang="en">Cost and Time Reduction</span></h3>
+                        <p><span lang="pt-BR">Diminua em até 60% os custos e 50% o tempo de projetos de modernização.</span><span lang="en">Reduce modernization project costs by up to 60% and time by 50%.</span></p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 10.5h.008v.008h-.008V10.5z" /><path d="M10.5 10.5V15" /></svg>
+                        </div>
+                        <h3><span lang="pt-BR">Decisões Baseadas em Dados</span><span lang="en">Data-Driven Decisions</span></h3>
+                        <p><span lang="pt-BR">Responda a perguntas críticas com base em análises concretas do seu código para priorizar aplicações e definir a melhor estratégia.</span><span lang="en">Answer critical questions based on concrete analysis of your code to prioritize applications and define the best strategy.</span></p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>
+                        </div>
+                        <h3><span lang="pt-BR">Redução de Risco</span><span lang="en">Risk Reduction</span></h3>
+                        <p><span lang="pt-BR">Minimize incertezas e garanta uma transição segura ao modernizar seus sistemas.</span><span lang="en">Minimize uncertainties and ensure a safe transition when modernizing your systems.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção de Módulos -->
+        <section id="modules" class="modules-section fade-in-section" style="padding-top:0;">
+            <div class="container">
+                <h2><span lang="pt-BR">Nossos Módulos</span><span lang="en">Our Modules</span></h2>
+                <p class="section-subtitle"><span lang="pt-BR">A Plataforma AI.Doks é composta por quatro produtos poderosos que se adaptam à sua necessidade, oferecendo desde um diagnóstico rápido até a transformação completa do seu sistema.</span><span lang="en">The AI.Doks Platform is comprised of four powerful products that adapt to your needs, offering everything from a quick diagnosis to the complete transformation of your system.</span></p>
                 <div class="modules-grid">
                     <div class="module-card">
                         <div class="module-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
                         </div>
                         <h3>Code Scan</h3>
-                        <p><span lang="pt-BR">Receba um diagnóstico executivo da sua aplicação. Entenda o tamanho, a complexidade e os riscos em horas, não em meses.</span><span lang="en">Receive an executive diagnostic of your application. Understand size, complexity, and risks in hours, not months.</span></p>
+                        <p><span lang="pt-BR">Obtenha uma análise inicial e executiva sobre o tamanho, complexidade e riscos da aplicação. Ideal como um diagnóstico de baixo custo para planejamento e definição de escopo.</span><span lang="en">Get an initial and executive analysis of the application's size, complexity, and risks. Ideal as a low-cost diagnostic for planning and scope definition.</span></p>
                     </div>
                     <div class="module-card">
                         <div class="module-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" /></svg>
                         </div>
-                        <h3>Code Analysis</h3>
-                        <p><span lang="pt-BR">Transforme seu código-fonte na "planta baixa" que sua equipe sempre sonhou. Geramos documentação, épicos e diagramas de arquitetura.</span><span lang="en">Turn your source code into the "blueprint" your team has always dreamed of. We generate documentation, epics, and architecture diagrams.</span></p>
+                        <h3>Code Analyze</h3>
+                        <p><span lang="pt-BR">Gere uma documentação profunda e multidimensional da aplicação (AS-IS) para guiar a modernização ou acelerar o onboarding de novas equipes.</span><span lang="en">Generate deep and multidimensional documentation of the application (AS-IS) to guide modernization or accelerate the onboarding of new teams.</span></p>
                     </div>
                     <div class="module-card">
                         <div class="module-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
                         </div>
                         <h3>Code Transformation</h3>
-                        <p><span lang="pt-BR">Execute a migração para uma nova stack com confiança. Nossa IA gera código moderno e testes automatizados, acelerando o desenvolvimento.</span><span lang="en">Execute the migration to a new stack with confidence. Our AI generates modern code and automated tests, accelerating development.</span></p>
+                        <p><span lang="pt-BR">Execute a modernização da aplicação para uma nova stack tecnológica, com geração de código e testes automatizados para garantir a qualidade.</span><span lang="en">Execute the application modernization to a new tech stack, with code generation and automated tests to ensure quality.</span></p>
                     </div>
                     <div class="module-card">
                         <div class="module-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.76 9.76 0 01-2.53-.388m-5.182-3.318a23.94 23.94 0 01-.387-3.555A9.76 9.76 0 0112 3.75c4.556 0 8.25 3.694 8.25 8.25z" /></svg>
                         </div>
                         <h3>Code Chat</h3>
-                        <p><span lang="pt-BR">Democratize o conhecimento. Permita que sua equipe "converse" com o código em linguagem natural para tirar dúvidas e acelerar o onboarding.</span><span lang="en">Democratize knowledge. Allow your team to "chat" with the code in natural language to ask questions and accelerate onboarding.</span></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção de Benefícios -->
-        <section class="benefits-section fade-in-section">
-            <div class="container">
-                <h2><span lang="pt-BR">Uma plataforma para revelar o potencial do seu legado</span><span lang="en">A platform to unlock your legacy's potential</span></h2>
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                        </div>
-                        <p><span lang="pt-BR">Transforme código obsoleto em documentação clara e compreensível.</span><span lang="en">Turn obsolete code into clear and understandable documentation.</span></p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
-                        </div>
-                        <p><span lang="pt-BR">Decodifique décadas de complexidade e revele as regras de negócio ocultas.</span><span lang="en">Decode decades of complexity and reveal hidden business rules.</span></p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
-                        </div>
-                        <p><span lang="pt-BR">Seu legado não é um peso. É um ativo valioso esperando para ser revelado.</span><span lang="en">Your legacy isn't a liability. It's a valuable asset waiting to be unlocked.</span></p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.25a14.98 14.98 0 00-5.84 7.38m5.84 2.58a14.98 14.98 0 00-6.16 12.12A14.98 14.98 0 0015.59 14.37z" /></svg>
-                        </div>
-                        <p><span lang="pt-BR">Crie uma base sólida para a inovação futura com o poder da IA Generativa.</span><span lang="en">Build a solid foundation for future innovation with the power of Generative AI.</span></p>
+                        <p><span lang="pt-BR">Disponibilize todo o conhecimento do código e da documentação através de uma interface de conversação para acelerar a manutenção e o suporte.</span><span lang="en">Make all code and documentation knowledge available through a conversational interface to accelerate maintenance and support.</span></p>
                     </div>
                 </div>
             </div>
@@ -703,15 +870,19 @@
         <section id="faq" class="faq-section fade-in-section">
             <div class="container">
                 <h2><span lang="pt-BR">Perguntas Frequentes</span><span lang="en">Frequently Asked Questions</span></h2>
-                <p class="section-subtitle"><span lang="pt-BR">Tudo o que você precisa saber sobre a AIDoks.</span><span lang="en">Everything you need to know about AIDoks.</span></p>
+                <p class="section-subtitle"><span lang="pt-BR">Tudo o que você precisa saber sobre a AI.Doks.</span><span lang="en">Everything you need to know about AI.Doks.</span></p>
                 <div class="faq-grid">
+                     <div class="faq-item">
+                        <h3><span lang="pt-BR">Isso é apenas uma ferramenta de conversão de código?</span><span lang="en">Is this just a code conversion tool?</span></h3>
+                        <p><span lang="pt-BR">Não. A conversão de código é apenas uma pequena parte do processo. O valor real da AI.Doks está em sua capacidade de analisar milhões de linhas de código para extrair e documentar a lógica de negócio subjacente. É essa compreensão profunda que permite uma modernização bem-sucedida e de baixo risco.</span><span lang="en">No. Code conversion is just a small part of the process. The real value of AI.Doks lies in its ability to analyze millions of lines of code to extract and document the underlying business logic. It is this deep understanding that enables a successful, low-risk modernization.</span></p>
+                    </div>
                     <div class="faq-item">
-                        <h3><span lang="pt-BR">Quais tipos de sistemas legados a AIDoks consegue analisar?</span><span lang="en">What kinds of legacy systems can AIDoks analyze?</span></h3>
+                        <h3><span lang="pt-BR">Quais tipos de sistemas legados a AI.Doks consegue analisar?</span><span lang="en">What kinds of legacy systems can AI.Doks analyze?</span></h3>
                         <p><span lang="pt-BR">Nossa plataforma é agnóstica à linguagem e pode ser treinada para analisar uma vasta gama de tecnologias, incluindo COBOL, PL/I, Natural, Java antigo, e muitas outras. O processo começa com a identificação das tecnologias no seu ambiente para adaptar nossos modelos de IA.</span><span lang="en">Our platform is language-agnostic and can be trained to analyze a wide range of technologies, including COBOL, PL/I, Natural, old Java versions, and many others. The process begins by identifying the technologies in your environment to tailor our AI models.</span></p>
                     </div>
                     <div class="faq-item">
-                        <h3><span lang="pt-BR">O código gerado me prende a alguma tecnologia proprietária (vendor lock-in)?</span><span lang="en">Does the generated code lock me into any proprietary technology?</span></h3>
-                        <p><span lang="pt-BR">Não. Um dos nossos pilares é a liberdade tecnológica. O código modernizado gerado pela AIDoks é limpo, idiomático para a linguagem de destino (como Java ou C#) e não depende de runtimes ou bibliotecas proprietárias. Você terá total controle e propriedade sobre o novo código.</span><span lang="en">No. One of our core principles is technological freedom. The modernized code generated by AIDoks is clean, idiomatic for the target language (like Java or C#), and does not depend on proprietary runtimes or libraries. You will have full control and ownership of the new code.</span></p>
+                        <h3><span lang="pt-BR">Quais estratégias de modernização vocês suportam?</span><span lang="en">What modernization strategies do you support?</span></h3>
+                        <p><span lang="pt-BR">Nossa abordagem é flexível. Apoiamos múltiplas estratégias, como Re-host (lift-and-shift para a nuvem), Re-platform (otimizar para a nuvem sem alterar a arquitetura central) e Re-architect (reestruturar para microserviços ou outras arquiteturas modernas), adaptando o plano à sua necessidade.</span><span lang="en">Our approach is flexible. We support multiple strategies, such as Re-host (lift-and-shift to the cloud), Re-platform (optimizing for the cloud without changing the core architecture), and Re-architect (refactoring for microservices or other modern architectures), tailoring the plan to your needs.</span></p>
                     </div>
                     <div class="faq-item">
                         <h3><span lang="pt-BR">Como a segurança do meu código-fonte é garantida durante o processo?</span><span lang="en">How is the security of my source code guaranteed during the process?</span></h3>
@@ -729,8 +900,8 @@
                     <span lang="en">Ready to unlock the potential of your legacy?</span>
                 </h2>
                 <p>
-                    <span lang="pt-BR">A plataforma AIDoks está em fase BETA. Participe e seja um dos primeiros a receber uma análise de diagnóstico sem custo, transformando incerteza em um plano de ação claro.</span>
-                    <span lang="en">The AIDoks platform is in BETA. Participate and be one of the first to receive a no-cost diagnostic analysis, turning uncertainty into a clear action plan.</span>
+                    <span lang="pt-BR">A plataforma AI.Doks está em fase BETA. Participe e seja um dos primeiros a receber uma análise de diagnóstico sem custo, transformando incerteza em um plano de ação claro.</span>
+                    <span lang="en">The AI.Doks platform is in BETA. Participate and be one of the first to receive a no-cost diagnostic analysis, turning uncertainty into a clear action plan.</span>
                 </p>
                 <a href="#" class="btn">
                     <span lang="pt-BR">Quero participar do Beta</span>
@@ -745,14 +916,14 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
-                    <div class="logo">AIDoks<span class="highlight">.</span></div>
+                    <div class="logo">AI<span class="highlight">.</span>Doks</div>
                     <p><span lang="pt-BR">Modernização de legado com GenAI.</span><span lang="en">Legacy modernization with GenAI.</span></p>
                 </div>
                 <div class="footer-links">
                     <h4><span lang="pt-BR">Produto</span><span lang="en">Product</span></h4>
                     <ul>
                         <li><a href="#modules">Code Scan</a></li>
-                        <li><a href="#modules">Code Analysis</a></li>
+                        <li><a href="#modules">Code Analyze</a></li>
                         <li><a href="#modules">Code Transformation</a></li>
                     </ul>
                 </div>
@@ -772,7 +943,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p><span lang="pt-BR">&copy; 2025 AIDoks. Todos os direitos reservados.</span><span lang="en">&copy; 2025 AIDoks. All rights reserved.</span></p>
+                <p><span lang="pt-BR">&copy; 2025 AI.Doks. Todos os direitos reservados.</span><span lang="en">&copy; 2025 AI.Doks. All rights reserved.</span></p>
             </div>
         </div>
     </footer>
@@ -787,13 +958,13 @@
 
             const words = {
                 'pt-BR': [
-                    "um ativo.",
+                    "agilidade.",
                     "documentação clara.",
                     "inovação futura.",
                     "vantagem competitiva."
                 ],
                 'en': [
-                    "an asset.",
+                    "agility.",
                     "clear documentation.",
                     "future innovation.",
                     "a competitive advantage."
