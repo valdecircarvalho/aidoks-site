@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<!-- O idioma inicial será definido pelo script -->
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIDoks - Modernização de Legado com GenAI</title>
+    <style>
+        :root {
+            --primary-color: #FFB800;
+            --dark-bg: #1C1C1C;
+            --dark-bg-secondary: #252525;
+            --text-light: #FFFFFF;
+            --text-secondary: #a0a0a0;
+            --border-color: #333333;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- Lógica de Idioma --- */
+        html[lang="pt-BR"] [lang="en"],
+        html[lang="en"] [lang="pt-BR"] {
+            display: none;
+        }
+
+        /* --- Componentes Reutilizáveis --- */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #000;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: #ffc733;
+        }
+
+        /* --- Animação de Scroll --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Navegação --- */
+        .navbar {
+            background: rgba(28, 28, 28, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+        
+        .navbar .logo .highlight {
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin: 0 16px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+        
+        .language-switcher {
+            margin-left: 24px;
+            border-left: 1px solid var(--border-color);
+            padding-left: 24px;
+        }
+        
+        .language-switcher button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 5px;
+            color: var(--text-secondary);
+        }
+        
+        .language-switcher button.active {
+            color: var(--primary-color);
+        }
+
+        /* --- Seção Hero --- */
+        .hero {
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            background: -webkit-linear-gradient(45deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            min-height: 140px; /* Espaço para o texto que muda */
+        }
+
+        .hero h1 .dynamic-word {
+            color: var(--primary-color);
+            background: none;
+            -webkit-text-fill-color: var(--primary-color);
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .hero .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .hero-visual {
+            margin-top: 80px;
+            padding: 0 20px;
+        }
+        
+        .hero-visual svg {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            background: var(--dark-bg);
+        }
+
+        /* --- Seção Social Proof --- */
+        .social-proof {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .social-proof p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            filter: grayscale(1) brightness(1.5);
+        }
+        
+        .logos svg {
+            height: 24px;
+        }
+
+        /* --- Seções de Features --- */
+        .feature-section {
+            padding: 100px 0;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .feature-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .feature-text, .feature-visual {
+            flex: 1;
+        }
+        
+        .feature-text .eyebrow {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-text h2 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .feature-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .feature-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .feature-visual svg {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 12px;
+            background: var(--dark-bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+        }
+
+        /* --- Seção de Módulos (Grid) --- */
+        .modules-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .modules-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .modules-section .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: left;
+        }
+
+        .module-card {
+            background: var(--dark-bg-secondary);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .module-icon {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .module-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .module-card h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+        
+        .module-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* --- Seção de Benefícios (Frases) --- */
+        .benefits-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .benefits-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .benefit-card {
+            background: var(--dark-bg-secondary);
+            padding: 32px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .benefit-icon {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .benefit-icon svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .benefit-card p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        
+        /* --- Seção FAQ --- */
+        .faq-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .faq-section h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .faq-section .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+            text-align: center;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 24px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item h3 {
+            font-size: 1.25rem;
+            margin: 0 0 12px 0;
+        }
+
+        .faq-item p {
+            margin: 0;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* --- Seção CTA --- */
+        .cta-section {
+            padding: 120px 0;
+            text-align: center;
+            background: var(--dark-bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            max-width: 700px;
+            margin: 0 auto 24px auto;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .footer-about .logo {
+             font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .footer-about .logo .highlight {
+            color: var(--primary-color);
+        }
+
+        .footer-about p {
+            color: var(--text-secondary);
+            margin-top: 16px;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            font-size: 1rem;
+            margin-bottom: 16px;
+            color: var(--text-light);
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsividade --- */
+        @media (max-width: 992px) {
+            .modules-grid, .benefits-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; min-height: 100px; }
+            .nav-links { display: none; } /* Simplificando para mobile */
+            .feature-section, .feature-section:nth-child(even) {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-about p {
+                margin: 16px auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .modules-grid, .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegação -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">AIDoks<span class="highlight">.</span></div>
+            <div class="nav-menu">
+                <nav class="nav-links">
+                    <a href="#about"><span lang="pt-BR">A Plataforma</span><span lang="en">The Platform</span></a>
+                    <a href="#modules"><span lang="pt-BR">Módulos</span><span lang="en">Modules</span></a>
+                    <a href="#faq">FAQ</a>
+                </nav>
+                <div class="language-switcher">
+                    <button id="lang-pt">PT</button>
+                    <button id="lang-en">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Hero -->
+        <section class="hero">
+            <div class="container">
+                <h1>
+                    <span lang="pt-BR">Transforme seu legado em <span id="dynamic-word-pt" class="dynamic-word"></span></span>
+                    <span lang="en">Turn your legacy into <span id="dynamic-word-en" class="dynamic-word"></span></span>
+                </h1>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn">
+                        <span lang="pt-BR">Peça uma Análise Gratuita</span>
+                        <span lang="en">Request a Free Analysis</span>
+                    </a>
+                </div>
+                <div class="hero-visual">
+                    <!-- Visual representando análise de código -->
+                    <svg viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="800" height="300" rx="16" fill="#1C1C1C"/>
+                        <rect x="1" y="1" width="798" height="298" rx="15" stroke="#333333" stroke-width="2"/>
+                        <rect x="40" y="40" width="200" height="220" rx="8" fill="#252525"/>
+                        <text x="60" y="70" font-family="monospace" font-size="14" fill="#a0a0a0">&lt;legacy code&gt;</text>
+                        <line x1="60" y1="90" x2="180" y2="90" stroke="#444" stroke-width="2"/>
+                        <line x1="60" y1="110" x2="160" y2="110" stroke="#444" stroke-width="2"/>
+                        <line x1="60" y1="130" x2="190" y2="130" stroke="#444" stroke-width="2"/>
+                        <path d="M280 150 C 320 100, 360 100, 400 150" stroke="#FFB800" stroke-width="3" stroke-dasharray="5 5" />
+                        <path d="M280 150 C 320 200, 360 200, 400 150" stroke="#a0a0a0" stroke-width="2" />
+                        <text x="310" y="135" font-family="sans-serif" font-size="14" fill="#FFB800">GenAI Analysis</text>
+                        <rect x="440" y="40" width="320" height="220" rx="8" fill="#252525"/>
+                        <text x="460" y="70" font-family="monospace" font-size="14" fill="#a0a0a0">&lt;modern code&gt;</text>
+                        <line x1="460" y1="90" x2="700" y2="90" stroke="#4CAF50" stroke-width="2"/>
+                        <line x1="460" y1="110" x2="680" y2="110" stroke="#4CAF50" stroke-width="2"/>
+                        <line x1="460" y1="130" x2="720" y2="130" stroke="#4CAF50" stroke-width="2"/>
+                        <text x="460" y="170" font-family="monospace" font-size="14" fill="#a0a0a0">&lt;documentation&gt;</text>
+                        <line x1="460" y1="190" x2="650" y2="190" stroke="#2196F3" stroke-width="2"/>
+                        <line x1="460" y1="210" x2="690" y2="210" stroke="#2196F3" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Social Proof -->
+        <section class="social-proof fade-in-section">
+            <div class="container">
+                <p>
+                    <span lang="pt-BR">Utilizado por empresas líderes em inovação para modernizar sistemas críticos</span>
+                    <span lang="en">Trusted by leading companies to modernize mission-critical systems</span>
+                </p>
+                <div class="logos">
+                    <!-- Placeholder Logos -->
+                    <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg"><text x="50" y="20" font-family="Arial" font-size="16" text-anchor="middle" fill="currentColor">TechCorp</text></svg>
+                    <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg"><text x="50" y="20" font-family="Arial" font-size="16" text-anchor="middle" fill="currentColor">Innovate</text></svg>
+                    <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg"><text x="50" y="20" font-family="Arial" font-size="16" text-anchor="middle" fill="currentColor">FutureSys</text></svg>
+                    <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg"><text x="50" y="20" font-family="Arial" font-size="16" text-anchor="middle" fill="currentColor">Quantum</text></svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 1: O que é -->
+        <section id="about" class="feature-section fade-in-section">
+            <div class="container" style="display:flex; align-items:center; gap: 80px;">
+                <div class="feature-text">
+                    <div class="eyebrow"><span lang="pt-BR">A PLATAFORMA</span><span lang="en">THE PLATFORM</span></div>
+                    <h2><span lang="pt-BR">A fonte da verdade não é mais uma caixa-preta</span><span lang="en">The source of truth is no longer a black box</span></h2>
+                    <p><span lang="pt-BR">O maior desafio não é escrever código novo, mas entender o que já existe. AIDoks vai direto na fonte da verdade — seu código-fonte — para extrair a lógica de negócio que move sua empresa. Transformamos complexidade técnica em conhecimento acionável, permitindo que suas equipes evoluam sistemas críticos com segurança e velocidade inéditas.</span><span lang="en">The biggest challenge isn't writing new code; it's understanding what already exists. AIDoks goes directly to the source of truth—your source code—to extract the business logic that drives your company. We turn technical complexity into actionable knowledge, enabling your teams to evolve critical systems with unprecedented safety and speed.</span></p>
+                </div>
+                <div class="feature-visual">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" rx="12" fill="#252525"/>
+                        <circle cx="100" cy="150" r="60" stroke="#FFB800" stroke-width="4" fill="none"/>
+                        <path d="M100 90 V 210 M 40 150 H 160" stroke="#FFB800" stroke-width="4" />
+                        <text x="250" y="130" font-family="sans-serif" font-size="24" fill="#a0a0a0">Clarity</text>
+                        <text x="250" y="180" font-family="sans-serif" font-size="24" fill="#a0a0a0">Insight</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 2: Solução -->
+        <section class="feature-section fade-in-section">
+            <div class="container" style="display:flex; align-items:center; gap: 80px; flex-direction: row-reverse;">
+                <div class="feature-text">
+                    <div class="eyebrow"><span lang="pt-BR">A SOLUÇÃO</span><span lang="en">THE SOLUTION</span></div>
+                    <h2><span lang="pt-BR">Modernize com dados, não com achismos</span><span lang="en">Modernize with data, not guesswork</span></h2>
+                    <p><span lang="pt-BR">Substitua a incerteza por um mapa completo da complexidade, dependências e tecnologias do seu sistema. Reduza os custos e o tempo de projetos de modernização em até 60%, garantindo uma migração suave para arquiteturas modernas e preservando a lógica de negócio que diferencia sua empresa no mercado.</span><span lang="en">Replace uncertainty with a complete map of your system's complexity, dependencies, and technologies. Reduce modernization project costs and timelines by up to 60%, ensuring a smooth migration to modern architectures while preserving the business logic that sets your company apart.</span></p>
+                </div>
+                <div class="feature-visual">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" rx="12" fill="#252525"/>
+                        <path d="M 50 250 C 150 150, 250 150, 350 50" stroke="#4CAF50" stroke-width="6" fill="none"/>
+                        <circle cx="350" cy="50" r="10" fill="#4CAF50"/>
+                        <text x="80" y="80" font-family="sans-serif" font-size="24" fill="#a0a0a0">Efficiency</text>
+                        <text x="200" y="220" font-family="sans-serif" font-size="24" fill="#a0a0a0">Growth</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Módulos -->
+        <section id="modules" class="modules-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Uma jornada de modernização completa</span><span lang="en">A complete modernization journey</span></h2>
+                <p class="section-subtitle"><span lang="pt-BR">Nossos módulos se adaptam à sua necessidade, oferecendo desde um diagnóstico rápido até a transformação completa do seu sistema.</span><span lang="en">Our modules adapt to your needs, offering everything from a quick diagnosis to the complete transformation of your system.</span></p>
+                <div class="modules-grid">
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+                        </div>
+                        <h3>Code Scan</h3>
+                        <p><span lang="pt-BR">Receba um diagnóstico executivo da sua aplicação. Entenda o tamanho, a complexidade e os riscos em horas, não em meses.</span><span lang="en">Receive an executive diagnostic of your application. Understand size, complexity, and risks in hours, not months.</span></p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" /></svg>
+                        </div>
+                        <h3>Code Analysis</h3>
+                        <p><span lang="pt-BR">Transforme seu código-fonte na "planta baixa" que sua equipe sempre sonhou. Geramos documentação, épicos e diagramas de arquitetura.</span><span lang="en">Turn your source code into the "blueprint" your team has always dreamed of. We generate documentation, epics, and architecture diagrams.</span></p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+                        </div>
+                        <h3>Code Transformation</h3>
+                        <p><span lang="pt-BR">Execute a migração para uma nova stack com confiança. Nossa IA gera código moderno e testes automatizados, acelerando o desenvolvimento.</span><span lang="en">Execute the migration to a new stack with confidence. Our AI generates modern code and automated tests, accelerating development.</span></p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.76 9.76 0 01-2.53-.388m-5.182-3.318a23.94 23.94 0 01-.387-3.555A9.76 9.76 0 0112 3.75c4.556 0 8.25 3.694 8.25 8.25z" /></svg>
+                        </div>
+                        <h3>Code Chat</h3>
+                        <p><span lang="pt-BR">Democratize o conhecimento. Permita que sua equipe "converse" com o código em linguagem natural para tirar dúvidas e acelerar o onboarding.</span><span lang="en">Democratize knowledge. Allow your team to "chat" with the code in natural language to ask questions and accelerate onboarding.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Benefícios -->
+        <section class="benefits-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Uma plataforma para revelar o potencial do seu legado</span><span lang="en">A platform to unlock your legacy's potential</span></h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                        </div>
+                        <p><span lang="pt-BR">Transforme código obsoleto em documentação clara e compreensível.</span><span lang="en">Turn obsolete code into clear and understandable documentation.</span></p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                        </div>
+                        <p><span lang="pt-BR">Decodifique décadas de complexidade e revele as regras de negócio ocultas.</span><span lang="en">Decode decades of complexity and reveal hidden business rules.</span></p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+                        </div>
+                        <p><span lang="pt-BR">Seu legado não é um peso. É um ativo valioso esperando para ser revelado.</span><span lang="en">Your legacy isn't a liability. It's a valuable asset waiting to be unlocked.</span></p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 2.25a14.98 14.98 0 00-5.84 7.38m5.84 2.58a14.98 14.98 0 00-6.16 12.12A14.98 14.98 0 0015.59 14.37z" /></svg>
+                        </div>
+                        <p><span lang="pt-BR">Crie uma base sólida para a inovação futura com o poder da IA Generativa.</span><span lang="en">Build a solid foundation for future innovation with the power of Generative AI.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção FAQ -->
+        <section id="faq" class="faq-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Perguntas Frequentes</span><span lang="en">Frequently Asked Questions</span></h2>
+                <p class="section-subtitle"><span lang="pt-BR">Tudo o que você precisa saber sobre a AIDoks.</span><span lang="en">Everything you need to know about AIDoks.</span></p>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3><span lang="pt-BR">Quais tipos de sistemas legados a AIDoks consegue analisar?</span><span lang="en">What kinds of legacy systems can AIDoks analyze?</span></h3>
+                        <p><span lang="pt-BR">Nossa plataforma é agnóstica à linguagem e pode ser treinada para analisar uma vasta gama de tecnologias, incluindo COBOL, PL/I, Natural, Java antigo, e muitas outras. O processo começa com a identificação das tecnologias no seu ambiente para adaptar nossos modelos de IA.</span><span lang="en">Our platform is language-agnostic and can be trained to analyze a wide range of technologies, including COBOL, PL/I, Natural, old Java versions, and many others. The process begins by identifying the technologies in your environment to tailor our AI models.</span></p>
+                    </div>
+                    <div class="faq-item">
+                        <h3><span lang="pt-BR">O código gerado me prende a alguma tecnologia proprietária (vendor lock-in)?</span><span lang="en">Does the generated code lock me into any proprietary technology?</span></h3>
+                        <p><span lang="pt-BR">Não. Um dos nossos pilares é a liberdade tecnológica. O código modernizado gerado pela AIDoks é limpo, idiomático para a linguagem de destino (como Java ou C#) e não depende de runtimes ou bibliotecas proprietárias. Você terá total controle e propriedade sobre o novo código.</span><span lang="en">No. One of our core principles is technological freedom. The modernized code generated by AIDoks is clean, idiomatic for the target language (like Java or C#), and does not depend on proprietary runtimes or libraries. You will have full control and ownership of the new code.</span></p>
+                    </div>
+                    <div class="faq-item">
+                        <h3><span lang="pt-BR">Como a segurança do meu código-fonte é garantida durante o processo?</span><span lang="en">How is the security of my source code guaranteed during the process?</span></h3>
+                        <p><span lang="pt-BR">A segurança é nossa prioridade máxima. A plataforma pode ser implantada em sua própria infraestrutura (on-premises ou nuvem privada), garantindo que seu código-fonte nunca saia do seu controle. Todos os dados são processados em um ambiente seguro e isolado.</span><span lang="en">Security is our top priority. The platform can be deployed within your own infrastructure (on-premises or private cloud), ensuring your source code never leaves your control. All data is processed in a secure and isolated environment.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção CTA -->
+        <section id="contact" class="cta-section fade-in-section">
+            <div class="container">
+                <h2>
+                    <span lang="pt-BR">Pronto para revelar o potencial do seu legado?</span>
+                    <span lang="en">Ready to unlock the potential of your legacy?</span>
+                </h2>
+                <p>
+                    <span lang="pt-BR">A plataforma AIDoks está em fase BETA. Participe e seja um dos primeiros a receber uma análise de diagnóstico sem custo, transformando incerteza em um plano de ação claro.</span>
+                    <span lang="en">The AIDoks platform is in BETA. Participate and be one of the first to receive a no-cost diagnostic analysis, turning uncertainty into a clear action plan.</span>
+                </p>
+                <a href="#" class="btn">
+                    <span lang="pt-BR">Quero participar do Beta</span>
+                    <span lang="en">Join the Beta</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">AIDoks<span class="highlight">.</span></div>
+                    <p><span lang="pt-BR">Modernização de legado com GenAI.</span><span lang="en">Legacy modernization with GenAI.</span></p>
+                </div>
+                <div class="footer-links">
+                    <h4><span lang="pt-BR">Produto</span><span lang="en">Product</span></h4>
+                    <ul>
+                        <li><a href="#modules">Code Scan</a></li>
+                        <li><a href="#modules">Code Analysis</a></li>
+                        <li><a href="#modules">Code Transformation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4><span lang="pt-BR">Recursos</span><span lang="en">Resources</span></h4>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#">Casos de Sucesso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4><span lang="pt-BR">Empresa</span><span lang="en">Company</span></h4>
+                    <ul>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p><span lang="pt-BR">&copy; 2025 AIDoks. Todos os direitos reservados.</span><span lang="en">&copy; 2025 AIDoks. All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const langPtBtn = document.getElementById('lang-pt');
+            const langEnBtn = document.getElementById('lang-en');
+            const htmlTag = document.documentElement;
+            const dynamicWordPt = document.getElementById('dynamic-word-pt');
+            const dynamicWordEn = document.getElementById('dynamic-word-en');
+
+            const words = {
+                'pt-BR': [
+                    "um ativo.",
+                    "documentação clara.",
+                    "inovação futura.",
+                    "vantagem competitiva."
+                ],
+                'en': [
+                    "an asset.",
+                    "clear documentation.",
+                    "future innovation.",
+                    "a competitive advantage."
+                ]
+            };
+            let wordIndex = 0;
+            let currentInterval;
+
+            function updateHeadline() {
+                const currentLang = htmlTag.getAttribute('lang') || 'pt-BR';
+                const currentWords = words[currentLang];
+                const dynamicWordEl = currentLang === 'pt-BR' ? dynamicWordPt : dynamicWordEn;
+
+                dynamicWordEl.style.opacity = 0;
+
+                setTimeout(() => {
+                    wordIndex = (wordIndex + 1) % currentWords.length;
+                    dynamicWordEl.textContent = currentWords[wordIndex];
+                    dynamicWordEl.style.opacity = 1;
+                }, 400); 
+            }
+
+            function startHeadlineAnimation() {
+                if (currentInterval) {
+                    clearInterval(currentInterval);
+                }
+                
+                const currentLang = htmlTag.getAttribute('lang') || 'pt-BR';
+                
+                dynamicWordPt.textContent = words['pt-BR'][0];
+                dynamicWordEn.textContent = words['en'][0];
+                wordIndex = 0;
+                
+                currentInterval = setInterval(updateHeadline, 3000);
+            }
+
+            function setLanguage(lang) {
+                htmlTag.setAttribute('lang', lang);
+                langPtBtn.classList.toggle('active', lang === 'pt-BR');
+                langEnBtn.classList.toggle('active', lang === 'en');
+                localStorage.setItem('preferredLanguage', lang);
+                startHeadlineAnimation();
+            }
+
+            langPtBtn.addEventListener('click', () => setLanguage('pt-BR'));
+            langEnBtn.addEventListener('click', () => setLanguage('en'));
+
+            const savedLang = localStorage.getItem('preferredLanguage');
+            const browserLang = navigator.language.startsWith('pt') ? 'pt-BR' : 'en';
+            setLanguage(savedLang || browserLang);
+
+            // --- Lógica da Animação de Scroll ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
