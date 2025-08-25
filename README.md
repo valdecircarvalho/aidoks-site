@@ -1,4 +1,4 @@
-# AI.Docks | Legacy Application Modernization Platform
+# AI.Doks | Legacy Application Modernization Platform
 
 ## AI-powered application modernization Platform
 
@@ -8,7 +8,7 @@ The AI.Doks  Platform is comprised of four powerful products, including Code Sca
 
 ---
 
-# AI.Docks | Plataforma de Modernização de Aplicações Legadas
+# AI.Doks | Plataforma de Modernização de Aplicações Legadas
 
 ## Plataforma de Modernização de Aplicações com Tecnologia de IA
 
