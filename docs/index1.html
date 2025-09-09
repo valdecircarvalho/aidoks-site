@@ -107,6 +107,7 @@
             font-size: 1.8rem;
             font-weight: bold;
             color: var(--text-light);
+            cursor: pointer;
         }
         
         .navbar .logo .highlight {
@@ -124,6 +125,7 @@
             margin: 0 16px;
             font-weight: 500;
             transition: color 0.2s ease;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -147,6 +149,178 @@
         
         .language-switcher button.active {
             color: var(--primary-color);
+        }
+
+        /* --- Estrutura das Páginas Mockup --- */
+        .page-header {
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--dark-bg-secondary);
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            margin: 0 0 16px 0;
+            color: var(--primary-color);
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .page-content {
+            padding: 80px 0;
+        }
+
+        /* --- Estilos da Página de Blog --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .blog-card {
+            background: var(--dark-bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .blog-card-content {
+            padding: 24px;
+        }
+        .blog-card-content h3 {
+            margin: 0 0 12px 0;
+            font-size: 1.4rem;
+        }
+        .blog-card-content p {
+            margin: 0 0 20px 0;
+            color: var(--text-secondary);
+        }
+        .blog-card-meta {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- Estilos da Página de Contato --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            background: var(--dark-bg-secondary);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        .contact-form textarea {
+            min-height: 150px;
+        }
+        .contact-info h3 {
+            color: var(--primary-color);
+        }
+        .contact-info p {
+            line-height: 1.8;
+        }
+
+        /* --- Estilos da Página About & Team --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .team-card {
+            background: var(--dark-bg-secondary);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary-color);
+        }
+        .team-card h3 {
+            margin: 0 0 8px 0;
+        }
+        .team-card p {
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        /* --- Estilos da Página de Documentação --- */
+        .docs-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .docs-sidebar {
+            flex: 0 0 250px;
+            position: sticky;
+            top: 120px; /* Abaixo do navbar */
+        }
+        .docs-sidebar h4 {
+            margin-bottom: 12px;
+        }
+        .docs-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .docs-sidebar li a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .docs-sidebar li a:hover, .docs-sidebar li a.active {
+            background: var(--dark-bg-secondary);
+            color: var(--text-light);
+        }
+        .docs-content {
+            flex: 1;
+        }
+        .docs-content h2 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        .docs-content pre {
+            background: var(--dark-bg-secondary);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
         }
 
         /* --- Seção Hero --- */
@@ -891,6 +1065,7 @@
         .footer-about .logo {
              font-size: 1.5rem;
             font-weight: bold;
+             cursor: pointer;
         }
         
         .footer-about .logo .highlight {
@@ -901,6 +1076,28 @@
             color: var(--text-secondary);
             margin-top: 16px;
             max-width: 300px;
+        }
+
+        .social-links {
+            margin-top: 24px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            display: inline-block;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .social-links svg {
+            width: 24px;
+            height: 24px;
         }
 
         .footer-links h4 {
@@ -923,6 +1120,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.2s ease;
+            cursor: pointer;
         }
         
         .footer-links a:hover {
@@ -940,13 +1138,13 @@
 
         /* --- Responsividade --- */
         @media (max-width: 992px) {
-            .modules-grid, .benefits-grid, .stats-grid {
+            .modules-grid, .benefits-grid, .stats-grid, .blog-grid, .team-grid {
                 grid-template-columns: 1fr 1fr;
             }
             .roi-grid {
                 grid-template-columns: 1fr;
             }
-            .comparison-grid {
+            .comparison-grid, .contact-wrapper {
                 grid-template-columns: 1fr;
             }
         }
@@ -965,6 +1163,9 @@
             .footer-about p {
                 margin: 16px auto;
             }
+            .social-links {
+                justify-content: center;
+            }
             .hero .cta-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -972,7 +1173,7 @@
         }
 
         @media (max-width: 576px) {
-            .modules-grid, .benefits-grid, .traps-grid, .stats-grid {
+            .modules-grid, .benefits-grid, .traps-grid, .stats-grid, .blog-grid, .team-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -983,14 +1184,14 @@
     <!-- Navegação -->
     <header class="navbar">
         <div class="container">
-            <div class="logo">Squad<span class="highlight">.AI</span></div>
+            <div class="logo" data-page="home">Squad<span class="highlight">.AI</span></div>
             <div class="nav-menu">
                 <nav class="nav-links">
-                    <a href="#about"><span lang="pt-BR">A Plataforma</span><span lang="en">The Platform</span></a>
-                    <a href="#methodology"><span lang="pt-BR">Metodologia</span><span lang="en">Methodology</span></a>
-                    <a href="#modules"><span lang="pt-BR">Módulos</span><span lang="en">Modules</span></a>
-                    <a href="#roi"><span lang="pt-BR">ROI</span><span lang="en">ROI</span></a>
-                    <a href="#faq">FAQ</a>
+                    <a data-page="home-section" data-target="#about"><span lang="pt-BR">A Plataforma</span><span lang="en">The Platform</span></a>
+                    <a data-page="blog"><span lang="pt-BR">Blog</span><span lang="en">Blog</span></a>
+                    <a data-page="docs"><span lang="pt-BR">Documentação</span><span lang="en">Documentation</span></a>
+                    <a data-page="about"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
+                    <a data-page="contact"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
                 </nav>
                 <div class="language-switcher">
                     <button id="lang-pt">PT</button>
@@ -1000,7 +1201,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="page-home">
         <!-- Seção Hero -->
         <section class="hero">
             <div class="container">
@@ -1013,11 +1214,11 @@
                     <span lang="en">The first GenAI platform that documents before migrating, preserving 100% of business rules and reducing modernization time by 50-60%</span>
                 </p>
                 <div class="cta-buttons">
-                    <a href="#contact" class="btn">
+                    <a href="#contact" class="btn" data-page="contact">
                         <span lang="pt-BR">Análise Gratuita (Beta)</span>
                         <span lang="en">Free Analysis (Beta)</span>
                     </a>
-                    <a href="#about" class="btn btn-secondary">
+                    <a href="#about" class="btn btn-secondary" data-page="home-section" data-target="#about">
                         <span lang="pt-BR">Ver Como Funciona</span>
                         <span lang="en">See How It Works</span>
                     </a>
@@ -1494,7 +1695,7 @@
         </section>
 
         <!-- Seção CTA -->
-        <section id="contact" class="cta-section fade-in-section">
+        <section id="contact-cta" class="cta-section fade-in-section">
             <div class="container">
                 <h2><span lang="pt-BR">Pronto para Transformar seu Legado?</span><span lang="en">Ready to Transform Your Legacy?</span></h2>
                 <p><span lang="pt-BR">Junte-se ao programa Beta e seja um dos primeiros a experimentar a próxima geração de modernização de legado.</span><span lang="en">Join the Beta program and be among the first to experience the next generation of legacy modernization.</span></p>
@@ -1507,7 +1708,7 @@
                 </div>
                 
                 <div class="cta-buttons">
-                    <a href="mailto:contato@squad.ai?subject=Programa Beta - Code Scan Gratuito" class="btn">
+                    <a class="btn" data-page="contact">
                         <span lang="pt-BR">Solicitar Code Scan Gratuito</span>
                         <span lang="en">Request Free Code Scan</span>
                     </a>
@@ -1520,36 +1721,208 @@
         </section>
     </main>
 
+    <!-- PÁGINA BLOG (MOCKUP) -->
+    <main id="page-blog" style="display: none;">
+        <header class="page-header">
+            <h1><span lang="pt-BR">Blog da Squad.AI</span><span lang="en">Squad.AI Blog</span></h1>
+            <p><span lang="pt-BR">Insights, artigos e notícias sobre modernização de legado, GenAI e engenharia de software.</span><span lang="en">Insights, articles, and news on legacy modernization, GenAI, and software engineering.</span></p>
+        </header>
+        <div class="page-content">
+            <div class="container">
+                <div class="blog-grid">
+                    <!-- Blog Post 1 -->
+                    <div class="blog-card">
+                        <img src="https://placehold.co/600x400/1A1823/00FFCC?text=GenAI" alt="[Imagem do artigo sobre GenAI]">
+                        <div class="blog-card-content">
+                            <h3><span lang="pt-BR">O Futuro é Agora: Como GenAI está Revolucionando a Modernização</span><span lang="en">The Future is Now: How GenAI is Revolutionizing Modernization</span></h3>
+                            <p><span lang="pt-BR">Explore o impacto da Inteligência Artificial Generativa nos processos de migração de sistemas legados...</span><span lang="en">Explore the impact of Generative Artificial Intelligence on legacy system migration processes...</span></p>
+                            <div class="blog-card-meta"><span lang="pt-BR">Por Jane Doe - 7 Set, 2025</span><span lang="en">By Jane Doe - Sep 7, 2025</span></div>
+                        </div>
+                    </div>
+                    <!-- Blog Post 2 -->
+                    <div class="blog-card">
+                        <img src="https://placehold.co/600x400/1A1823/8000FF?text=COBOL" alt="[Imagem do artigo sobre COBOL]">
+                        <div class="blog-card-content">
+                            <h3><span lang="pt-BR">5 Sinais de que seu Sistema COBOL Precisa de Ajuda</span><span lang="en">5 Signs Your COBOL System Needs Help</span></h3>
+                            <p><span lang="pt-BR">Sistemas COBOL ainda rodam boa parte da economia global, mas até quando? Identifique os sinais...</span><span lang="en">COBOL systems still run a large part of the global economy, but for how long? Identify the signs...</span></p>
+                            <div class="blog-card-meta"><span lang="pt-BR">Por John Smith - 1 Set, 2025</span><span lang="en">By John Smith - Sep 1, 2025</span></div>
+                        </div>
+                    </div>
+                    <!-- Blog Post 3 -->
+                    <div class="blog-card">
+                        <img src="https://placehold.co/600x400/242131/EAEAF1?text=Cloud" alt="[Imagem do artigo sobre Cloud]">
+                        <div class="blog-card-content">
+                            <h3><span lang="pt-BR">Além do Lift & Shift: Estratégias de Migração para a Nuvem</span><span lang="en">Beyond Lift & Shift: Cloud Migration Strategies</span></h3>
+                            <p><span lang="pt-BR">Mover seu sistema para a nuvem é mais do que uma simples cópia. Entenda as diferentes abordagens...</span><span lang="en">Moving your system to the cloud is more than just a simple copy. Understand the different approaches...</span></p>
+                            <div class="blog-card-meta"><span lang="pt-BR">Por Emily White - 28 Ago, 2025</span><span lang="en">By Emily White - Aug 28, 2025</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PÁGINA CONTATO (MOCKUP) -->
+    <main id="page-contact" style="display: none;">
+        <header class="page-header">
+            <h1><span lang="pt-BR">Entre em Contato</span><span lang="en">Get in Touch</span></h1>
+            <p><span lang="pt-BR">Tem um projeto em mente ou quer saber mais sobre a Squad.AI? Fale conosco.</span><span lang="en">Have a project in mind or want to learn more about Squad.AI? Talk to us.</span></p>
+        </header>
+        <div class="page-content">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-group">
+                                <label for="name"><span lang="pt-BR">Nome</span><span lang="en">Name</span></label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><span lang="pt-BR">Email</span><span lang="en">Email</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message"><span lang="pt-BR">Mensagem</span><span lang="en">Message</span></label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn"><span lang="pt-BR">Enviar Mensagem</span><span lang="en">Send Message</span></button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h3><span lang="pt-BR">Nossas Informações</span><span lang="en">Our Information</span></h3>
+                        <p><span lang="pt-BR"><strong>Email:</strong> contato@squad.ai<br><strong>Telefone:</strong> +55 (11) 99999-8888<br><strong>Endereço:</strong> Av. Faria Lima, 4000<br>São Paulo, SP - Brasil</span><span lang="en"><strong>Email:</strong> contact@squad.ai<br><strong>Phone:</strong> +1 (555) 123-4567<br><strong>Address:</strong> 123 Tech Avenue<br>Silicon Valley, CA - USA</span></p>
+                        <p><span lang="pt-BR">Para demonstrações, você também pode agendar diretamente em nosso Calendly.</span><span lang="en">For demos, you can also book directly on our Calendly.</span></p>
+                        <a href="https://calendly.com/squadai/demo" class="btn btn-secondary" target="_blank">
+                            <span lang="pt-BR">Agendar Demo</span><span lang="en">Schedule Demo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PÁGINA ABOUT (MOCKUP) -->
+    <main id="page-about" style="display: none;">
+        <header class="page-header">
+            <h1><span lang="pt-BR">Sobre a Squad.AI</span><span lang="en">About Squad.AI</span></h1>
+            <p><span lang="pt-BR">Nossa missão é resgatar o valor trancado em sistemas legados, transformando-os em ativos estratégicos para o futuro.</span><span lang="en">Our mission is to unlock the value trapped in legacy systems, turning them into strategic assets for the future.</span></p>
+        </header>
+        <div class="page-content">
+            <div class="container">
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 60px auto; font-size: 1.1rem; color: var(--text-secondary);">A Squad.AI nasceu da frustração de ver projetos de modernização falharem repetidamente. Abordagens tradicionais são lentas, caras e arriscadas, muitas vezes trocando um problema antigo por um novo. Acreditamos que a resposta está em entender profundamente o legado antes de transformá-lo. Usando Inteligência Artificial Generativa, nossa plataforma ilumina a "caixa-preta" dos sistemas antigos, extraindo 100% das regras de negócio e permitindo uma transição segura e eficiente para tecnologias modernas.</p>
+                
+                <!-- Página Team (embutida no About) -->
+                <div id="page-team">
+                    <h2 style="text-align: center; font-size: 2.8rem; margin-bottom: 60px;"><span lang="pt-BR">Conheça Nossa Equipe</span><span lang="en">Meet Our Team</span></h2>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <img src="https://placehold.co/120x120/8000FF/EAEAF1?text=CEO" alt="[Foto do CEO]">
+                            <h3><span lang="pt-BR">Alex Silva</span><span lang="en">Alex Smith</span></h3>
+                            <p>CEO & Founder</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="https://placehold.co/120x120/00FFCC/1A1823?text=CTO" alt="[Foto do CTO]">
+                            <h3><span lang="pt-BR">Beatriz Costa</span><span lang="en">Betty Costa</span></h3>
+                            <p>CTO</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="https://placehold.co/120x120/EAEAF1/1A1823?text=CPO" alt="[Foto do CPO]">
+                            <h3><span lang="pt-BR">Carlos Pereira</span><span lang="en">Charles Perry</span></h3>
+                            <p>CPO</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="https://placehold.co/120x120/3E3A50/EAEAF1?text=Lead" alt="[Foto do Lead Engineer]">
+                            <h3><span lang="pt-BR">Daniela Souza</span><span lang="en">Daniela Smith</span></h3>
+                            <p>Lead Engineer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PÁGINA DOCUMENTAÇÃO (MOCKUP) -->
+    <main id="page-docs" style="display: none;">
+         <header class="page-header">
+            <h1><span lang="pt-BR">Documentação</span><span lang="en">Documentation</span></h1>
+            <p><span lang="pt-BR">Guias, tutoriais e referências para integrar e utilizar a plataforma Squad.AI.</span><span lang="en">Guides, tutorials, and references for integrating and using the Squad.AI platform.</span></p>
+        </header>
+        <div class="page-content">
+            <div class="container">
+                <div class="docs-wrapper">
+                    <aside class="docs-sidebar">
+                        <h4><span lang="pt-BR">Começando</span><span lang="en">Getting Started</span></h4>
+                        <ul>
+                            <li><a href="#" class="active"><span lang="pt-BR">Introdução</span><span lang="en">Introduction</span></a></li>
+                            <li><a href="#"><span lang="pt-BR">Instalação do Agente</span><span lang="en">Agent Installation</span></a></li>
+                        </ul>
+                        <h4 style="margin-top: 24px;">Módulos</h4>
+                        <ul>
+                            <li><a href="#">Code Scan</a></li>
+                            <li><a href="#">Code Analysis</a></li>
+                            <li><a href="#">Code Transformation</a></li>
+                            <li><a href="#">Code Chat</a></li>
+                        </ul>
+                    </aside>
+                    <div class="docs-content">
+                        <h2><span lang="pt-BR">Introdução</span><span lang="en">Introduction</span></h2>
+                        <p><span lang="pt-BR">Bem-vindo à documentação da Squad.AI. Este guia irá ajudá-lo a configurar seu primeiro projeto de modernização...</span><span lang="en">Welcome to the Squad.AI documentation. This guide will help you set up your first modernization project...</span></p>
+                        <p><span lang="pt-BR">O primeiro passo é instalar nosso agente de análise no ambiente que contém seu código-fonte legado. O agente é responsável por coletar metadados e enviar para nossa plataforma de forma segura.</span><span lang="en">The first step is to install our analysis agent in the environment containing your legacy source code. The agent is responsible for collecting metadata and sending it securely to our platform.</span></p>
+                        <h2><span lang="pt-BR">Exemplo de Configuração</span><span lang="en">Configuration Example</span></h2>
+                        <p><span lang="pt-BR">Abaixo, um exemplo de arquivo de configuração <code>config.yml</code> para o agente:</span><span lang="en">Below is an example of a <code>config.yml</code> configuration file for the agent:</span></p>
+                        <pre><code>
+project_id: "your-project-id"
+api_key: "your-secret-api-key"
+source_path: "/path/to/legacy/code"
+language: "cobol"
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
-                    <div class="logo">Squad<span class="highlight">.AI</span></div>
+                    <div class="logo" data-page="home">Squad<span class="highlight">.AI</span></div>
                     <p><span lang="pt-BR">Transformando sistemas legados em vantagens competitivas através de GenAI e documentação inteligente.</span><span lang="en">Transforming legacy systems into competitive advantages through GenAI and intelligent documentation.</span></p>
+                    <div class="social-links">
+                        <a href="#" target="_blank" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.62 1.62 0 0013 14.19a.48.48 0 000 .26V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.93 3.36 4.45z"></path></svg>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Github">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.82c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"></path></svg>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h4><span lang="pt-BR">Plataforma</span><span lang="en">Platform</span></h4>
                     <ul>
-                        <li><a href="#modules"><span lang="pt-BR">Módulos</span><span lang="en">Modules</span></a></li>
-                        <li><a href="#methodology"><span lang="pt-BR">Metodologia</span><span lang="en">Methodology</span></a></li>
-                        <li><a href="#roi"><span lang="pt-BR">ROI</span><span lang="en">ROI</span></a></li>
+                        <li><a data-page="home-section" data-target="#modules"><span lang="pt-BR">Módulos</span><span lang="en">Modules</span></a></li>
+                        <li><a data-page="home-section" data-target="#methodology"><span lang="pt-BR">Metodologia</span><span lang="en">Methodology</span></a></li>
+                        <li><a data-page="home-section" data-target="#roi"><span lang="pt-BR">ROI</span><span lang="en">ROI</span></a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4><span lang="pt-BR">Empresa</span><span lang="en">Company</span></h4>
                     <ul>
-                        <li><a href="#about"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a></li>
-                        <li><a href="#contact"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a></li>
-                        <li><a href="#"><span lang="pt-BR">Blog</span><span lang="en">Blog</span></a></li>
+                        <li><a data-page="about"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a></li>
+                        <li><a data-page="contact"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a></li>
+                        <li><a data-page="blog"><span lang="pt-BR">Blog</span><span lang="en">Blog</span></a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4><span lang="pt-BR">Suporte</span><span lang="en">Support</span></h4>
                     <ul>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#"><span lang="pt-BR">Documentação</span><span lang="en">Documentation</span></a></li>
-                        <li><a href="mailto:contato@squad.ai"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a></li>
+                        <li><a data-page="home-section" data-target="#faq">FAQ</a></li>
+                        <li><a data-page="docs"><span lang="pt-BR">Documentação</span><span lang="en">Documentation</span></a></li>
+                         <li><a href="mailto:contato@squad.ai"><span lang="pt-BR">Email</span><span lang="en">Email</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -1561,6 +1934,50 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- Lógica de Troca de Página ---
+            const pageLinks = document.querySelectorAll('[data-page]');
+            const pages = document.querySelectorAll('main[id^="page-"]');
+            const homePage = document.getElementById('page-home');
+
+            function switchPage(pageId) {
+                pages.forEach(page => {
+                    page.style.display = 'none';
+                });
+
+                const targetPage = document.getElementById(`page-${pageId}`);
+                if (targetPage) {
+                    targetPage.style.display = 'block';
+                } else {
+                    homePage.style.display = 'block'; // Fallback to home
+                }
+                window.scrollTo(0, 0);
+            }
+
+            pageLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    const targetId = this.getAttribute('data-target');
+
+                    if (pageId === 'home-section' && targetId) {
+                        // If on a different page, first switch to home
+                        if (homePage.style.display === 'none') {
+                           switchPage('home');
+                           // Use a timeout to ensure the page is visible before scrolling
+                           setTimeout(() => {
+                                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                           }, 100);
+                        } else {
+                            // Already on home page, just scroll
+                            document.querySelector(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    } else {
+                        switchPage(pageId);
+                    }
+                });
+            });
+
+
             // --- Lógica da Animação de Headline ---
             const wordsEn = ['competitive advantage', 'business asset', 'modern architecture', 'strategic value', 'innovation driver'];
             const wordsPt = ['vantagem competitiva', 'ativo de negócio', 'arquitetura moderna', 'valor estratégico', 'motor de inovação'];
@@ -1629,33 +2046,8 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
-
-            // --- Smooth Scrolling ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
         });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
