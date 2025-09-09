@@ -1,0 +1,2236 @@
+<!DOCTYPE html>
+<!-- O idioma inicial será definido pelo script -->
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI.Docks - GenAI-Powered Legacy Modernization Platform</title>
+    <meta name="description" content="Transform your legacy systems into competitive advantages with AI-powered documentation, analysis, and modernization. 50-60% faster than traditional approaches.">
+    <style>
+        :root {
+            --primary-color: #EF7722; /* Laranja forte */
+            --secondary-color: #EF7722; /* Laranja forte (substituindo o azul) */
+            --accent-color: #FAA533; /* Amarelo queimado */
+            --base-bg: #EBEBEB; /* Cinza claro */
+            --card-bg: #FFFFFF; /* Branco para cards */
+            --text-dark: #222222; /* Texto escuro */
+            --text-gray: #555555; /* Texto cinza */
+            --border-color: #DDDDDD; /* Borda cinza claro */
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: var(--base-bg);
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- Lógica de Idioma --- */
+        html[lang="pt-BR"] [lang="en"],
+        html[lang="en"] [lang="pt-BR"] {
+            display: none;
+        }
+
+        /* --- Componentes Reutilizáveis --- */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #FFFFFF; 
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: #d86a1d;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--card-bg);
+            border-color: var(--primary-color);
+        }
+
+        /* --- Animação de Scroll --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Navegação --- */
+        .navbar {
+            background: rgba(235, 235, 235, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+        
+        .navbar .logo .highlight {
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            margin: 0 16px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-dark);
+        }
+        
+        .language-switcher {
+            margin-left: 24px;
+            border-left: 1px solid var(--border-color);
+            padding-left: 24px;
+        }
+        
+        .language-switcher button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 5px;
+            color: var(--text-gray);
+        }
+        
+        .language-switcher button.active {
+            color: var(--primary-color);
+        }
+
+        /* --- Estrutura das Páginas Mockup --- */
+        .page-header {
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--card-bg);
+        }
+        .page-header h1 {
+            font-size: 3rem;
+            margin: 0 0 16px 0;
+            color: var(--primary-color);
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .page-content {
+            padding: 80px 0;
+        }
+
+        /* --- Estilos da Página de Blog --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .blog-card-content {
+            padding: 24px;
+        }
+        .blog-card-content h3 {
+            margin: 0 0 12px 0;
+            font-size: 1.4rem;
+        }
+        .blog-card-content p {
+            margin: 0 0 20px 0;
+            color: var(--text-gray);
+        }
+        .blog-card-meta {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* --- Estilos da Página de Contato --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--base-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+        .contact-form textarea {
+            min-height: 150px;
+        }
+        .contact-info h3 {
+            color: var(--primary-color);
+        }
+        .contact-info p {
+            line-height: 1.8;
+        }
+
+        /* --- Estilos da Página About & Team --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .team-card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary-color);
+        }
+        .team-card h3 {
+            margin: 0 0 8px 0;
+        }
+        .team-card p {
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        /* --- Estilos da Página de Documentação --- */
+        .docs-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .docs-sidebar {
+            flex: 0 0 250px;
+            position: sticky;
+            top: 120px; /* Abaixo do navbar */
+        }
+        .docs-sidebar h4 {
+            margin-bottom: 12px;
+        }
+        .docs-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .docs-sidebar li a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--text-gray);
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .docs-sidebar li a:hover, .docs-sidebar li a.active {
+            background: var(--card-bg);
+            color: var(--text-dark);
+        }
+        .docs-content {
+            flex: 1;
+        }
+        .docs-content h2 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        .docs-content pre {
+            background: var(--card-bg);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        /* --- Seção Hero --- */
+        .hero {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(239, 119, 34, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            background: -webkit-linear-gradient(45deg, #222222, #777777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            min-height: 140px;
+        }
+
+        .hero h1 .dynamic-word {
+            color: var(--primary-color);
+            background: none;
+            -webkit-text-fill-color: var(--primary-color);
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .hero .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        /* --- Seção de Estatísticas --- */
+        .stats-section {
+            padding: 80px 0;
+            background: var(--card-bg); 
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px; 
+            text-align: center;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .stat-icon {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .stat-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem; 
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+
+        /* --- Seção Social Proof --- */
+        .social-proof {
+            padding: 60px 0;
+        }
+
+        .beta-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            border-left: 4px solid var(--accent-color); /* Amarelo accent */
+        }
+
+        .beta-icon {
+            flex-shrink: 0;
+            color: var(--accent-color);
+        }
+
+        .beta-icon svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .beta-text {
+            text-align: left;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .beta-text span {
+            display: block; 
+        }
+        
+        /* --- Seções de Features --- */
+        .feature-section {
+            padding: 100px 0;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .feature-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .feature-text, .feature-visual {
+            flex: 1;
+        }
+        
+        .feature-text .eyebrow {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-text h2 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .feature-text p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .feature-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-benefits li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .feature-benefits li::before {
+            content: '✓';
+            color: var(--primary-color); /* Laranja */
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .feature-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .feature-visual svg {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+        }
+        
+        /* --- Seção Comparação --- */
+        .comparison-section {
+            padding: 100px 0;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-section h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .comparison-column {
+            padding: 40px;
+            border-radius: 12px;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+
+        .traditional {
+            background: #f9f9f9;
+            border-top: 4px solid var(--text-gray);
+        }
+
+        .aidocks-comparison {
+            background: rgba(239, 119, 34, 0.05);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .comparison-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .comparison-column h3 svg {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+
+        .traditional h3 {
+            color: var(--text-gray);
+        }
+
+        .aidocks-comparison h3 {
+            color: var(--primary-color);
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 12px;
+        }
+
+        .comparison-icon {
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+        
+        .comparison-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .traditional .comparison-icon {
+            color: var(--text-gray);
+        }
+
+        .aidocks-comparison .comparison-icon {
+            color: var(--primary-color);
+        }
+
+        .comparison-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+        
+        /* --- Seção Armadilhas --- */
+        .traps-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .traps-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .traps-section .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+        
+        .traps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .trap-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .trap-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .trap-icon {
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+        
+        .trap-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .trap-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.2rem;
+        }
+        
+        .trap-card p {
+            margin: 0;
+            color: var(--text-gray);
+        }
+
+        /* --- Seção de Módulos (Grid) --- */
+        .modules-section, .methodology-section, .value-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .modules-section h2, .methodology-section h2, .value-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .modules-section .section-subtitle, .methodology-section .section-subtitle, .value-section .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: left;
+        }
+
+        .module-card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .module-icon {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .module-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .module-card h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+        
+        .module-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .module-time {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            background: rgba(239, 119, 34, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        /* --- Nova Seção Metodologia --- */
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .methodology-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .methodology-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .methodology-icon {
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+        
+        .methodology-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .methodology-step .step-content h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.25rem;
+        }
+        
+        .methodology-step .step-content p {
+            margin: 0;
+            color: var(--text-gray);
+        }
+
+        /* --- Seção de Benefícios (Frases) --- */
+        .benefits-section {
+            padding: 100px 0;
+            text-align: center;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .benefits-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .benefit-card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .benefit-icon {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .benefit-icon svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .benefit-card p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-gray);
+        }
+
+        /* --- Seção ROI --- */
+        .roi-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .roi-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .roi-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .roi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .roi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .roi-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .roi-label {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .roi-description {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+        
+        /* --- Seção FAQ --- */
+        .faq-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+            background: var(--card-bg);
+        }
+        
+        .faq-section h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .faq-section .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+            text-align: center;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            cursor: pointer;
+        }
+
+        .faq-question h3 {
+            font-size: 1.25rem;
+            margin: 0;
+            color: var(--text-dark);
+            transition: color 0.2s ease;
+        }
+        
+        .faq-item.active .faq-question h3 {
+            color: var(--primary-color);
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--text-gray);
+            transition: transform 0.3s ease, color 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.2s ease-out;
+            opacity: 0;
+        }
+        
+        .faq-answer p {
+            margin: 0;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust as needed */
+            padding-bottom: 24px;
+            opacity: 1;
+        }
+
+
+        /* --- Seção CTA --- */
+        .cta-section {
+            padding: 120px 0;
+            text-align: center;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            max-width: 700px;
+            margin: 0 auto 24px auto;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        .cta-highlight {
+            background: rgba(239, 119, 34, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 500px;
+        }
+
+        .cta-highlight p {
+            margin: 0;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
+            background: #f5f5f5;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .footer-about .logo {
+             font-size: 1.5rem;
+            font-weight: bold;
+             cursor: pointer;
+        }
+        
+        .footer-about .logo .highlight {
+            color: var(--primary-color);
+        }
+
+        .footer-about p {
+            color: var(--text-gray);
+            margin-top: 16px;
+            max-width: 300px;
+        }
+
+        .social-links {
+            margin-top: 24px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-gray);
+            display: inline-block;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .social-links svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-links h4 {
+            font-size: 1rem;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-dark);
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsividade --- */
+        @media (max-width: 992px) {
+            .modules-grid, .benefits-grid, .stats-grid, .blog-grid, .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .roi-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-grid, .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; min-height: 100px; }
+            .nav-links { display: none; }
+            .feature-section, .feature-section:nth-child(even) {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-about p {
+                margin: 16px auto;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .hero .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .modules-grid, .benefits-grid, .traps-grid, .stats-grid, .blog-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegação -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo" data-page="home">Squad<span class="highlight">.AI</span></div>
+            <div class="nav-menu">
+                <nav class="nav-links">
+                    <a data-page="home-section" data-target="#about"><span lang="pt-BR">A Plataforma</span><span lang="en">The Platform</span></a>
+                    <a data-page="blog"><span lang="pt-BR">Blog</span><span lang="en">Blog</span></a>
+                    <a data-page="docs"><span lang="pt-BR">Documentação</span><span lang="en">Documentation</span></a>
+                    <a data-page="about"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
+                    <a data-page="contact"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
+                </nav>
+                <div class="language-switcher">
+                    <button id="lang-pt">PT</button>
+                    <button id="lang-en">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="page-home">
+        <!-- Seção Hero -->
+        <section class="hero">
+            <div class="container">
+                <h1>
+                    <span lang="pt-BR">Transforme seu legado em <span id="dynamic-word-pt" class="dynamic-word"></span></span>
+                    <span lang="en">Turn your legacy into <span id="dynamic-word-en" class="dynamic-word"></span></span>
+                </h1>
+                <p class="subtitle">
+                    <span lang="pt-BR">A primeira plataforma GenAI que documenta antes de migrar, preservando 100% das regras de negócio e reduzindo tempo de modernização em 50-60%</span>
+                    <span lang="en">The first GenAI platform that documents before migrating, preserving 100% of business rules and reducing modernization time by 50-60%</span>
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn" data-page="contact">
+                        <span lang="pt-BR">Análise Gratuita (Beta)</span>
+                        <span lang="en">Free Analysis (Beta)</span>
+                    </a>
+                    <a href="#about" class="btn btn-secondary" data-page="home-section" data-target="#about">
+                        <span lang="pt-BR">Ver Como Funciona</span>
+                        <span lang="en">See How It Works</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Estatísticas -->
+        <section class="stats-section fade-in-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                        </div>
+                        <div class="stat-number">50-60%</div>
+                        <div class="stat-label">
+                            <span lang="pt-BR">Redução no tempo de projeto</span>
+                            <span lang="en">Reduction in project time</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                        </div>
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">
+                            <span lang="pt-BR">Preservação de regras de negócio</span>
+                            <span lang="en">Business rules preservation</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                         <div class="stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-2.253a9.527 9.527 0 0 0-4.121-2.253M15 19.128v-3.857a3.375 3.375 0 0 0-3.375-3.375H9.75m0-3.375A3.375 3.375 0 0 1 13.125 5h3.375a3.375 3.375 0 0 1 3.375 3.375v3.857m-9.75 0h-3.375a3.375 3.375 0 0 0-3.375 3.375v3.857a3.375 3.375 0 0 0 3.375 3.375h3.375m-3.375-9.375a3.375 3.375 0 0 1 3.375-3.375h3.375a3.375 3.375 0 0 1 3.375 3.375m-9.75 0V7.5" /></svg>
+                        </div>
+                        <div class="stat-number">66%</div>
+                        <div class="stat-label">
+                            <span lang="pt-BR">Redução no tamanho da equipe</span>
+                            <span lang="en">Team size reduction</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                         <div class="stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5h.008v.008H12v-.008ZM12 10.5h.008v.008H12v-.008Zm0 0h.008v.008H12v-.008Zm0 0h.008v.008H12v-.008Zm-4.5 0h.008v.008H7.5v-.008Zm0 0h.008v.008H7.5v-.008Zm0 0h.008v.008H7.5v-.008Zm0 0h.008v.008H7.5v-.008Zm-3-3h.008v.008H4.5V7.5Zm0 0h.008v.008H4.5V7.5Zm0 0h.008v.008H4.5V7.5Zm0 0h.008v.008H4.5V7.5Zm-3-3h.008v.008H1.5V4.5Zm0 0h.008v.008H1.5V4.5Zm0 0h.008v.008H1.5V4.5Zm0 0h.008v.008H1.5V4.5Zm18-3h.008v.008h-.008V1.5Zm0 0h.008v.008h-.008V1.5Zm0 0h.008v.008h-.008V1.5Zm0 0h.008v.008h-.008V1.5Zm3 3h.008v.008h-.008V4.5Zm0 0h.008v.008h-.008V4.5Zm0 0h.008v.008h-.008V4.5Zm0 0h.008v.008h-.008V4.5Zm3 3h.008v.008h-.008V7.5Zm0 0h.008v.008h-.008V7.5Zm0 0h.008v.008h-.008V7.5Zm0 0h.008v.008h-.008V7.5Zm3 3h.008v.008h-.008v-3.008Zm0 0h.008v.008h-.008v-3.008Zm0 0h.008v.008h-.008v-3.008Zm0 0h.008v.008h-.008v-3.008Zm-15 0h.008v.008H6v-.008Zm0 0h.008v.008H6v-.008Zm0 0h.008v.008H6v-.008Zm0 0h.008v.008H6v-.008Z" /></svg>
+                        </div>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">
+                            <span lang="pt-BR">Vendor Lock-in</span>
+                            <span lang="en">Vendor Lock-in</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Social Proof -->
+        <section class="social-proof fade-in-section">
+            <div class="container">
+                 <div class="beta-card">
+                    <div class="beta-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.82m5.84-2.56a6 6 0 0 0-7.38-5.84m2.56 5.84L6.16 16.11m6.25-6.25L16.11 6.16m-2.56 5.84a6 6 0 0 1-5.84-7.38v4.82m5.84 2.56a6 6 0 0 0 7.38 5.84m-2.56-5.84L17.84 3.84m-6.25 6.25L3.84 17.84" /></svg>
+                    </div>
+                    <div class="beta-text">
+                        <span lang="pt-BR"><strong>Programa Beta Pioneer:</strong> Seja um dos primeiros a transformar seu legado em vantagem competitiva.</span>
+                        <span lang="en"><strong>Pioneer Beta Program:</strong> Be among the first to transform your legacy into a competitive advantage.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 1: O que é -->
+        <section id="about" class="feature-section fade-in-section">
+            <div class="container" style="display:flex; align-items:center; gap: 80px;">
+                <div class="feature-text">
+                    <div class="eyebrow"><span lang="pt-BR">A PLATAFORMA</span><span lang="en">THE PLATFORM</span></div>
+                    <h2><span lang="pt-BR">Documentação Antes da Migração</span><span lang="en">Documentation Before Migration</span></h2>
+                    <p><span lang="pt-BR">Diferente de outras soluções que fazem "lift and shift", o Squad.AI primeiro extrai e documenta todas as regras de negócio do seu código legado. Só depois inicia a modernização, garantindo zero perda de conhecimento crítico.</span><span lang="en">Unlike other solutions that do "lift and shift," Squad.AI first extracts and documents all business rules from your legacy code. Only then does it begin modernization, ensuring zero loss of critical knowledge.</span></p>
+                    <ul class="feature-benefits">
+                        <li><span lang="pt-BR">Análise direta do código-fonte, não de documentação desatualizada</span><span lang="en">Direct source code analysis, not outdated documentation</span></li>
+                        <li><span lang="pt-BR">Extração de regras de negócio com GenAI</span><span lang="en">Business rules extraction with GenAI</span></li>
+                        <li><span lang="pt-BR">Documentação multi-dimensional (executiva, produto, técnica)</span><span lang="en">Multi-dimensional documentation (executive, product, technical)</span></li>
+                        <li><span lang="pt-BR">Preservação de 100% da lógica de negócio</span><span lang="en">100% business logic preservation</span></li>
+                    </ul>
+                </div>
+                <div class="feature-visual">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" rx="12" fill="#FFFFFF"/>
+                        <!-- Legacy Code -->
+                        <rect x="30" y="50" width="120" height="80" rx="8" fill="#EBEBEB" stroke="#FAA533" stroke-width="2"/>
+                        <text x="90" y="75" font-family="monospace" font-size="12" fill="#FAA533" text-anchor="middle">LEGACY</text>
+                        <text x="90" y="95" font-family="monospace" font-size="12" fill="#FAA533" text-anchor="middle">CODE</text>
+                        
+                        <!-- GenAI Brain -->
+                        <circle cx="200" cy="150" r="40" fill="none" stroke="#EF7722" stroke-width="3"/>
+                        <text x="200" y="155" font-family="sans-serif" font-size="14" fill="#EF7722" text-anchor="middle">GenAI</text>
+                        
+                        <!-- Documentation -->
+                        <rect x="250" y="50" width="120" height="80" rx="8" fill="#EBEBEB" stroke="#EF7722" stroke-width="2"/>
+                        <text x="310" y="75" font-family="monospace" font-size="12" fill="#EF7722" text-anchor="middle">DOCS</text>
+                        <text x="310" y="95" font-family="monospace" font-size="12" fill="#EF7722" text-anchor="middle">RULES</text>
+                        
+                        <!-- Modern Code -->
+                        <rect x="250" y="170" width="120" height="80" rx="8" fill="#EBEBEB" stroke="#EF7722" stroke-width="2"/>
+                        <text x="310" y="195" font-family="monospace" font-size="12" fill="#EF7722" text-anchor="middle">MODERN</text>
+                        <text x="310" y="215" font-family="monospace" font-size="12" fill="#EF7722" text-anchor="middle">CODE</text>
+                        
+                        <!-- Arrows -->
+                        <path d="M150 90 L160 90" stroke="#FAA533" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <path d="M240 130 L250 110" stroke="#FAA533" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <path d="M240 170 L250 190" stroke="#FAA533" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#FAA533"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Comparação -->
+        <section class="comparison-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Por que a Abordagem Tradicional Falha?</span><span lang="en">Why Traditional Approaches Fail?</span></h2>
+                <div class="comparison-grid">
+                    <div class="comparison-column traditional">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span lang="pt-BR">Abordagem Tradicional</span>
+                            <span lang="en">Traditional Approach</span>
+                        </h3>
+                        <div class="comparison-item">
+                            <div class="comparison-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></div>
+                            <div class="comparison-text">
+                                <span lang="pt-BR"><strong>Tradução Superficial:</strong> Foco apenas na conversão de sintaxe ("lift and shift"), sem redesenhar ou otimizar a arquitetura legada.</span>
+                                <span lang="en"><strong>Superficial Translation:</strong> Focus only on syntax conversion ("lift and shift"), without redesigning or optimizing legacy architecture.</span>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></div>
+                            <div class="comparison-text">
+                                <span lang="pt-BR"><strong>Nova Dívida Técnica:</strong> Código gerado complexo e de difícil manutenção, trocando um problema antigo por um novo.</span>
+                                <span lang="en"><strong>New Technical Debt:</strong> Generated code is complex and hard to maintain, trading one old problem for a new one.</span>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></div>
+                            <div class="comparison-text">
+                                <span lang="pt-BR"><strong>Vendor Lock-in:</strong> Dependência de runtimes proprietários, criando novo aprisionamento tecnológico.</span>
+                                <span lang="en"><strong>Vendor Lock-in:</strong> Dependence on proprietary runtimes, creating new technological imprisonment.</span>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></div>
+                            <div class="comparison-text">
+                                <span lang="pt-BR"><strong>Falta de Visibilidade:</strong> Modernização sem gerar documentação de negócio, sistema continua sendo "caixa-preta".</span>
+                                <span lang="en"><strong>Lack of Visibility:</strong> Modernization without generating business documentation, system remains a "black box".</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-column aidocks-comparison">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span lang="pt-BR">Abordagem Squad.AI</span>
+                            <span lang="en">Squad.AI Approach</span>
+                        </h3>
+                        <div class="comparison-item">
+                            <div class="comparison-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                            <div class="comparison-text">
+                                <span lang="pt-BR"><strong>Extração de Lógica de Negócio:</strong> GenAI extrai e documenta regras de negócio antes de qualquer migração de código.</span>
+                                <span lang="en"><strong>Business Logic Extraction:</strong> GenAI extracts and documents business rules before any code migration.</span>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                            <div class="comparison-text">
+                                <span lang="pt-BR"><strong>Código Limpo e Manutenível:</strong> Geração de código idiomático e limpo, seguindo melhores práticas da linguagem alvo.</span>
+                                <span lang="en"><strong>Clean and Maintainable Code:</strong> Generation of idiomatic and clean code, following target language best practices.</span>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                            <div class="comparison-text">
+                                <span lang="pt-BR"><strong>Liberdade Tecnológica:</strong> Zero dependências proprietárias, código gerado é 100% seu e sem runtimes especiais.</span>
+                                <span lang="en"><strong>Technological Freedom:</strong> Zero proprietary dependencies, generated code is 100% yours with no special runtimes.</span>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg></div>
+                            <div class="comparison-text">
+                                <span lang="pt-BR"><strong>Documentação Completa:</strong> Documentação multi-dimensional: executiva, produto e técnica, com diagramas e regras de negócio.</span>
+                                <span lang="en"><strong>Complete Documentation:</strong> Multi-dimensional documentation: executive, product and technical, with diagrams and business rules.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção Armadilhas -->
+        <section class="traps-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Evite as Armadilhas da Modernização Manual</span><span lang="en">Avoid the Pitfalls of Manual Modernization</span></h2>
+                <p class="section-subtitle"><span lang="pt-BR">A abordagem tradicional para modernizar sistemas legados é repleta de riscos que geram custos, atrasos e resultados que não atendem às expectativas do negócio.</span><span lang="en">The traditional approach to modernizing legacy systems is fraught with risks that lead to cost overruns, delays, and outcomes that don't meet business expectations.</span></p>
+                <div class="traps-grid">
+                    <div class="trap-card">
+                        <div class="trap-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6.75l-1.5 1.5-1.5-1.5M13.5 12.75l-1.5 1.5-1.5-1.5M13.5 18.75l-1.5 1.5-1.5-1.5M4.5 6.75l1.5 1.5 1.5-1.5M4.5 12.75l1.5 1.5 1.5-1.5M4.5 18.75l1.5 1.5 1.5-1.5m9-15l-1.5 1.5-1.5-1.5M18 12.75l-1.5 1.5-1.5-1.5M18 18.75l-1.5 1.5-1.5-1.5" /></svg></div>
+                        <div>
+                            <h3><span lang="pt-BR">Tradução Superficial do Código</span><span lang="en">Superficial Code Translation</span></h3>
+                            <p><span lang="pt-BR">O processo foca apenas na conversão da sintaxe ("lift and shift"), sem redesenhar ou otimizar a arquitetura legada.</span><span lang="en">The process focuses only on syntax conversion ("lift and shift"), without redesigning or optimizing the legacy architecture.</span></p>
+                        </div>
+                    </div>
+                    <div class="trap-card">
+                        <div class="trap-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg></div>
+                        <div>
+                            <h3><span lang="pt-BR">Criação de Nova Dívida Técnica</span><span lang="en">Creation of New Technical Debt</span></h3>
+                            <p><span lang="pt-BR">O código gerado é, frequentemente, complexo e de difícil manutenção, trocando um problema antigo por um novo.</span><span lang="en">The generated code is often complex and difficult to maintain, trading one old problem for a new one.</span></p>
+                        </div>
+                    </div>
+                    <div class="trap-card">
+                        <div class="trap-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg></div>
+                        <div>
+                            <h3><span lang="pt-BR">Dependência de Tecnologias Proprietárias</span><span lang="en">Dependence on Proprietary Technologies</span></h3>
+                            <p><span lang="pt-BR">Muitas soluções forçam o uso de "runtimes" específicos, criando um novo e arriscado aprisionamento tecnológico (vendor lock-in).</span><span lang="en">Many solutions force the use of specific "runtimes," creating new and risky technological lock-in.</span></p>
+                        </div>
+                    </div>
+                    <div class="trap-card">
+                        <div class="trap-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg></div>
+                        <div>
+                            <h3><span lang="pt-BR">Perpetuação da Falta de Visibilidade</span><span lang="en">Perpetuation of Lack of Visibility</span></h3>
+                            <p><span lang="pt-BR">A modernização ocorre sem gerar documentação de negócio, e o novo sistema continua sendo uma "caixa-preta".</span><span lang="en">Modernization occurs without generating business documentation, and the new system remains a "black box."</span></p>
+                        </div>
+                    </div>
+                     <div class="trap-card">
+                        <div class="trap-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg></div>
+                        <div>
+                            <h3><span lang="pt-BR">Baixo Retorno sobre o Investimento</span><span lang="en">Low Return on Investment</span></h3>
+                            <p><span lang="pt-BR">O resultado não resolve os problemas de fundo (performance, escalabilidade, regras de negócio), entregando pouco valor estratégico.</span><span lang="en">The result does not solve the underlying problems (performance, scalability, business rules), delivering little strategic value.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Metodologia -->
+        <section id="methodology" class="methodology-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Como Funciona: Nosso Processo Guiado</span><span lang="en">How It Works: Our Guided Process</span></h2>
+                <p class="section-subtitle"><span lang="pt-BR">Nossa metodologia é uma jornada flexível, estruturada em módulos independentes que se adaptam à fase e à necessidade de cada cliente.</span><span lang="en">Our methodology is a flexible journey, structured in independent modules that adapt to each client's phase and needs.</span></p>
+                <div class="methodology-grid">
+                    <div class="methodology-step">
+                        <div class="methodology-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>
+                        </div>
+                        <div class="step-content">
+                            <h3><span lang="pt-BR">Análise Direta do Código-Fonte</span><span lang="en">Direct Source Code Analysis</span></h3>
+                            <p><span lang="pt-BR">Extraímos a verdade diretamente do seu ativo mais valioso, sem depender de documentação desatualizada ou suposições.</span><span lang="en">We extract the truth directly from your most valuable asset, without relying on outdated documentation or assumptions.</span></p>
+                        </div>
+                    </div>
+                    <div class="methodology-step">
+                        <div class="methodology-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 6.45 3.75H6a2.25 2.25 0 0 0-2.25 2.25v12A2.25 2.25 0 0 0 6 20.25h3.375c.621 0 1.125-.504 1.125-1.125V15h-1.5M12 9h.008v.008H12V9Z" /></svg>
+                        </div>
+                        <div class="step-content">
+                            <h3><span lang="pt-BR">Tradução de Código para Negócio</span><span lang="en">Code to Business Translation</span></h3>
+                            <p><span lang="pt-BR">Convertemos complexidade técnica em regras de negócio e documentação compreensível para stakeholders executivos.</span><span lang="en">We convert technical complexity into business rules and documentation understandable to executive stakeholders.</span></p>
+                        </div>
+                    </div>
+                    <div class="methodology-step">
+                        <div class="methodology-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 11.667 0l3.181-3.183m-4.991-2.696v4.992h4.992m-4.993 0 3.181-3.183a8.25 8.25 0 0 0-11.667 0l3.181 3.183" /></svg>
+                        </div>
+                        <div class="step-content">
+                            <h3><span lang="pt-BR">Transição Estruturada</span><span lang="en">Structured Transition</span></h3>
+                            <p><span lang="pt-BR">Garantimos uma migração suave para tecnologias modernas, preservando 100% da lógica de negócio e eliminando riscos.</span><span lang="en">We ensure a smooth migration to modern technologies, preserving 100% of business logic and eliminating risks.</span></p>
+                        </div>
+                    </div>
+                    <div class="methodology-step">
+                        <div class="methodology-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m-7.289 2.72a3 3 0 0 1-4.682-2.72 9.094 9.094 0 0 1 3.741-.479m7.289 2.72a8.973 8.973 0 0 1-5.304 0m5.304 0a9.026 9.026 0 0 0 4.125-7.784A5.969 5.969 0 0 0 18 5.625c-.372 0-.734.04-1.09.117m-7.81 2.274a5.969 5.969 0 0 1-1.09-.117A5.969 5.969 0 0 1 6 5.625c0-1.87.755-3.571 1.996-4.781A5.973 5.973 0 0 1 12 3c1.325 0 2.553.44 3.504 1.17m-6.307 7.747a8.973 8.973 0 0 0 5.304 0M12 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+                        </div>
+                        <div class="step-content">
+                            <h3><span lang="pt-BR">Democratização do Conhecimento</span><span lang="en">Knowledge Democratization</span></h3>
+                            <p><span lang="pt-BR">Permitimos que toda a equipe "converse" com o código através de linguagem natural, acelerando onboarding e suporte.</span><span lang="en">We enable the entire team to "talk" to the code through natural language, accelerating onboarding and support.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOVA SEÇÃO: SQUAD DO FUTURO -->
+        <section id="squad-future" class="feature-section fade-in-section" style="background: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+            <div class="container" style="display:flex; align-items:center; gap: 80px;">
+                <div class="feature-visual">
+                    <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="500" height="400" rx="12" fill="var(--card-bg)"/>
+                        <!-- Validação Humana -->
+                        <rect x="20" y="20" width="130" height="360" rx="8" fill="#e0e0e0"/>
+                        <text x="85" y="50" font-family="sans-serif" font-size="14" fill="#333" text-anchor="middle" font-weight="600">
+                            <tspan x="85" dy="0">Validação</tspan>
+                            <tspan x="85" dy="1.2em">Humana</tspan>
+                        </text>
+                        <!-- Senior Roles -->
+                        <g>
+                            <rect x="35" y="80" width="100" height="60" rx="6" fill="#fff" stroke="#ccc"/>
+                            <text x="85" y="110" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Sênior PO</text>
+                        </g>
+                         <g>
+                            <rect x="35" y="150" width="100" height="60" rx="6" fill="#fff" stroke="#ccc"/>
+                            <text x="85" y="180" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Sênior Arquiteto</text>
+                        </g>
+                         <g>
+                            <rect x="35" y="220" width="100" height="60" rx="6" fill="#fff" stroke="#ccc"/>
+                            <text x="85" y="250" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Sênior Tech Lead</text>
+                        </g>
+                         <g>
+                            <rect x="35" y="290" width="100" height="60" rx="6" fill="#fff" stroke="#ccc"/>
+                            <text x="85" y="320" font-family="sans-serif" font-size="12" fill="#333" text-anchor="middle">Sênior Developer</text>
+                        </g>
+
+                        <!-- AI Agents -->
+                        <g>
+                            <rect x="180" y="35" width="140" height="50" rx="6" fill="rgba(239, 119, 34, 0.2)"/>
+                            <text x="250" y="60" font-family="sans-serif" font-size="12" fill="var(--primary-color)" text-anchor="middle" font-weight="500">AI Agent PO</text>
+                        </g>
+                         <g>
+                            <rect x="180" y="125" width="140" height="50" rx="6" fill="rgba(239, 119, 34, 0.2)"/>
+                            <text x="250" y="150" font-family="sans-serif" font-size="12" fill="var(--primary-color)" text-anchor="middle" font-weight="500">AI Agent Tech Lead</text>
+                        </g>
+                         <g>
+                            <rect x="180" y="215" width="140" height="50" rx="6" fill="rgba(239, 119, 34, 0.2)"/>
+                             <text x="250" y="240" font-family="sans-serif" font-size="12" fill="var(--primary-color)" text-anchor="middle" font-weight="500">AI Agent QA</text>
+                        </g>
+                         <g>
+                            <rect x="340" y="80" width="140" height="50" rx="6" fill="rgba(250, 165, 51, 0.2)"/>
+                            <text x="410" y="105" font-family="sans-serif" font-size="12" fill="var(--accent-color)" text-anchor="middle" font-weight="500">AI Agent Architect</text>
+                        </g>
+                         <g>
+                            <rect x="340" y="170" width="140" height="50" rx="6" fill="rgba(250, 165, 51, 0.2)"/>
+                            <text x="410" y="195" font-family="sans-serif" font-size="12" fill="var(--accent-color)" text-anchor="middle" font-weight="500">AI Agent Developer</text>
+                        </g>
+                         <g>
+                            <rect x="340" y="260" width="140" height="50" rx="6" fill="rgba(250, 165, 51, 0.2)"/>
+                             <text x="410" y="285" font-family="sans-serif" font-size="12" fill="var(--accent-color)" text-anchor="middle" font-weight="500">AI Agent SRE</text>
+                        </g>
+
+                         <!-- Conexões -->
+                        <defs>
+                            <marker id="arrow-orange" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+                                <polygon points="0 0, 6 2, 0 4" fill="var(--primary-color)"/>
+                            </marker>
+                             <marker id="arrow-yellow" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+                                <polygon points="0 0, 6 2, 0 4" fill="var(--accent-color)"/>
+                            </marker>
+                        </defs>
+                        <path d="M150 110 L180 60" stroke="#ccc" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        <path d="M150 180 L180 150" stroke="#ccc" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        <path d="M150 250 L180 240" stroke="#ccc" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        <path d="M150 320 L180 240" stroke="#ccc" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+                        <path d="M320 60 L340 85" stroke="var(--primary-color)" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+                        <path d="M320 150 L340 175" stroke="var(--primary-color)" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+                        <path d="M320 240 L340 265" stroke="var(--primary-color)" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+
+                        <path d="M480 105 L480 170" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-yellow)"/>
+                        <path d="M480 195 L480 260" stroke="var(--accent-color)" stroke-width="1.5" marker-end="url(#arrow-yellow)"/>
+
+                    </svg>
+                </div>
+                 <div class="feature-text">
+                    <div class="eyebrow"><span lang="pt-BR">FUTURE SQUAD</span><span lang="en">FUTURE SQUAD</span></div>
+                    <h2><span lang="pt-BR">O Novo Paradigma de Desenvolvimento</span><span lang="en">The New Development Paradigm</span></h2>
+                    <p><span lang="pt-BR">Nossa plataforma revoluciona o desenvolvimento com a FUTURE SQUAD, uma metodologia onde a expertise humana e a automação de IA convergem. Nesse novo paradigma, Agentes de IA executam tarefas complexas em todo o ciclo de vida do desenvolvimento (SDLC) — desde a análise de requisitos e design de arquitetura até a codificação, testes e deploy. Seus especialistas sêniores são liberados da execução repetitiva para atuar como estrategistas, mentores e validadores, garantindo que a velocidade da IA seja sempre guiada pela visão de negócio e pela mais alta qualidade.</span><span lang="en">Our platform revolutionizes development with the FUTURE SQUAD, a methodology where human expertise and AI automation converge. In this new paradigm, AI Agents execute complex tasks across the entire software development lifecycle (SDLC)—from requirements analysis and architectural design to coding, testing, and deployment. Your senior experts are freed from repetitive execution to act as strategists, mentors, and validators, ensuring that the speed of AI is always guided by business vision and the highest quality.</span></p>
+                    <ul class="feature-benefits">
+                        <li><span lang="pt-BR"><strong>Hiper-Automação & Velocidade:</strong> Agentes de IA operam 24/7, automatizando a esteira de desenvolvimento para entregar software em uma fração do tempo tradicional.</span><span lang="en"><strong>Hyper-Automation & Velocity:</strong> AI Agents operate 24/7, automating the development pipeline to deliver software in a fraction of the traditional time.</span></li>
+                        <li><span lang="pt-BR"><strong>Supervisão Humana Estratégica:</strong> Sua equipe sênior assume um papel de liderança, focando na inovação, na arquitetura complexa e na validação do valor de negócio entregue pela IA.</span><span lang="en"><strong>Strategic Human Oversight:</strong> Your senior team takes on a leadership role, focusing on innovation, complex architecture, and validating the business value delivered by the AI.</span></li>
+                        <li><span lang="pt-BR"><strong>Eficiência e Redução de Custos:</strong> Otimize a estrutura da sua equipe e elimine gargalos. A automação inteligente resulta em projetos mais previsíveis e com um custo total de propriedade (TCO) significativamente menor.</span><span lang="en"><strong>Efficiency and Cost Reduction:</strong> Optimize your team structure and eliminate bottlenecks. Intelligent automation leads to more predictable projects with a significantly lower total cost of ownership (TCO).</span></li>
+                         <li><span lang="pt-BR"><strong>Qualidade e Segurança Nativas:</strong> A qualidade é integrada desde o início. Nossos agentes geram testes abrangentes, aplicam as melhores práticas e realizam análises de segurança contínuas em todo o processo.</span><span lang="en"><strong>Built-in Quality & Security:</strong> Quality is embedded from the start. Our agents generate comprehensive tests, enforce best practices, and perform continuous security analysis throughout the process.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Módulos -->
+        <section id="modules" class="modules-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Jornada Completa em 4 Módulos Flexíveis</span><span lang="en">Complete Journey in 4 Flexible Modules</span></h2>
+                <p class="section-subtitle"><span lang="pt-BR">Nossa plataforma se adapta às suas necessidades, oferecendo desde um diagnóstico rápido até a transformação completa do seu sistema.</span><span lang="en">Our platform adapts to your needs, offering everything from quick diagnostics to complete system transformation.</span></p>
+                <div class="modules-grid">
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                            </svg>
+                        </div>
+                        <h3><span lang="pt-BR">Code Scan</span><span lang="en">Code Scan</span></h3>
+                        <p><span lang="pt-BR">Diagnóstico executivo da sua aplicação. Entenda tamanho, complexidade e riscos em horas, não meses. Ideal para planejamento inicial e tomada de decisão.</span><span lang="en">Executive diagnosis of your application. Understand size, complexity and risks in hours, not months. Ideal for initial planning and decision making.</span></p>
+                        <div class="module-time">
+                            <span lang="pt-BR">Horas, não meses</span>
+                            <span lang="en">Hours, not months</span>
+                        </div>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                            </svg>
+                        </div>
+                        <h3><span lang="pt-BR">Code Analysis</span><span lang="en">Code Analysis</span></h3>
+                        <p><span lang="pt-BR">Transforme seu código-fonte na "planta baixa" que sua equipe sempre sonhou. Geramos documentação, épicos e diagramas de arquitetura com extração de regras de negócio.</span><span lang="en">Transform your source code into the "blueprint" your team always dreamed of. We generate documentation, epics and architecture diagrams with business rules extraction.</span></p>
+                        <div class="module-time">
+                            <span lang="pt-BR">Documentação completa</span>
+                            <span lang="en">Complete documentation</span>
+                        </div>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                            </svg>
+                        </div>
+                        <h3><span lang="pt-BR">Code Transformation</span><span lang="en">Code Transformation</span></h3>
+                        <p><span lang="pt-BR">Execute a migração para uma nova stack com confiança. Nossa IA gera código moderno e testes automatizados, acelerando o desenvolvimento e garantindo qualidade.</span><span lang="en">Execute migration to a new stack with confidence. Our AI generates modern code and automated tests, accelerating development and ensuring quality.</span></p>
+                        <div class="module-time">
+                            <span lang="pt-BR">Migração acelerada</span>
+                            <span lang="en">Accelerated migration</span>
+                        </div>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                            </svg>
+                        </div>
+                        <h3><span lang="pt-BR">Code Chat</span><span lang="en">Code Chat</span></h3>
+                        <p><span lang="pt-BR">Democratize o conhecimento. Permita que sua equipe "converse" com o código em linguagem natural para fazer perguntas e acelerar o onboarding de novos desenvolvedores.</span><span lang="en">Democratize knowledge. Allow your team to "talk" to the code in natural language to ask questions and accelerate onboarding of new developers.</span></p>
+                        <div class="module-time">
+                            <span lang="pt-BR">Conhecimento acessível</span>
+                            <span lang="en">Accessible knowledge</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção ROI -->
+        <section id="roi" class="roi-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">ROI Comprovado: 50-60% Redução de Tempo</span><span lang="en">Proven ROI: 50-60% Time Reduction</span></h2>
+                <div class="roi-grid">
+                    <div class="roi-card">
+                        <div class="roi-number">50-60%</div>
+                        <div class="roi-label">
+                            <span lang="pt-BR">Redução de Tempo</span>
+                            <span lang="en">Time Reduction</span>
+                        </div>
+                        <div class="roi-description">
+                            <span lang="pt-BR">Projetos de modernização completados em 2-4 meses vs. 8-12 meses da abordagem tradicional</span>
+                            <span lang="en">Modernization projects completed in 2-4 months vs. 8-12 months of traditional approach</span>
+                        </div>
+                    </div>
+                    <div class="roi-card">
+                        <div class="roi-number">66%</div>
+                        <div class="roi-label">
+                            <span lang="pt-BR">Redução de Equipe</span>
+                            <span lang="en">Team Reduction</span>
+                        </div>
+                        <div class="roi-description">
+                            <span lang="pt-BR">De 6 pessoas para apenas 2 (1 arquiteto + 1 PO), mantendo a mesma qualidade de entrega</span>
+                            <span lang="en">From 6 people to just 2 (1 architect + 1 PO), maintaining the same delivery quality</span>
+                        </div>
+                    </div>
+                    <div class="roi-card">
+                        <div class="roi-number">100%</div>
+                        <div class="roi-label">
+                            <span lang="pt-BR">Preservação de Regras</span>
+                            <span lang="en">Rules Preservation</span>
+                        </div>
+                        <div class="roi-description">
+                            <span lang="pt-BR">Garantia de preservação de todas as regras de negócio críticas durante a modernização</span>
+                            <span lang="en">Guarantee of preserving all critical business rules during modernization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Benefícios -->
+        <section class="benefits-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Por que Escolher Squad.AI?</span><span lang="en">Why Choose Squad.AI?</span></h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                            </svg>
+                        </div>
+                        <h3><span lang="pt-BR">Zero Vendor Lock-in</span><span lang="en">Zero Vendor Lock-in</span></h3>
+                        <p><span lang="pt-BR">Código gerado é 100% seu, sem dependências proprietárias ou runtimes especiais</span><span lang="en">Generated code is 100% yours, with no proprietary dependencies or special runtimes</span></p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189 6.01 6.01 0 001.041-.927 4.5 4.5 0 00.419-1.69c.102-.31.102-.65 0-.96a4.503 4.503 0 00-.419-1.69 6.01 6.01 0 00-1.041-.927A6.01 6.01 0 0012 7.5a6.01 6.01 0 00-1.5.189 6.01 6.01 0 00-1.041.927 4.5 4.5 0 00-.419 1.69c-.102.31-.102-.65 0 .96.083.659.26 1.289.419 1.69.3.445.62.84 1.041.927.487.141.99.189 1.5.189zm0 0v3.75m-3.75-6.75h7.5" />
+                            </svg>
+                        </div>
+                        <h3><span lang="pt-BR">Documentação Antes da Migração</span><span lang="en">Documentation Before Migration</span></h3>
+                        <p><span lang="pt-BR">Única plataforma que extrai regras de negócio antes de iniciar a modernização</span><span lang="en">Only platform that extracts business rules before starting modernization</span></p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                            </svg>
+                        </div>
+                        <h3><span lang="pt-BR">Módulos Independentes</span><span lang="en">Independent Modules</span></h3>
+                        <p><span lang="pt-BR">Flexibilidade para iniciar com análise e documentação, sem compromisso com migração completa</span><span lang="en">Flexibility to start with analysis and documentation, without commitment to complete migration</span></p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                            </svg>
+                        </div>
+                        <h3><span lang="pt-BR">Democratização do Conhecimento</span><span lang="en">Knowledge Democratization</span></h3>
+                        <p><span lang="pt-BR">Code Chat exclusivo permite que qualquer membro da equipe "converse" com o código</span><span lang="en">Exclusive Code Chat allows any team member to "talk" to the code</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção FAQ -->
+        <section id="faq" class="faq-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Perguntas Frequentes</span><span lang="en">Frequently Asked Questions</span></h2>
+                <p class="section-subtitle"><span lang="pt-BR">Esclareça suas dúvidas sobre nossa plataforma e metodologia</span><span lang="en">Clarify your doubts about our platform and methodology</span></p>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3><span lang="pt-BR">Quais linguagens são suportadas?</span><span lang="en">Which languages are supported?</span></h3>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p><span lang="pt-BR">Suportamos as principais linguagens legacy como COBOL, PL/I, Natural/ADABAS, Visual Basic, Delphi, PowerBuilder, Oracle Forms, e linguagens modernas como Java, .NET, Python, JavaScript. Nossa plataforma é extensível para novas linguagens conforme demanda.</span><span lang="en">We support major legacy languages like COBOL, PL/I, Natural/ADABAS, Visual Basic, Delphi, PowerBuilder, Oracle Forms, and modern languages like Java, .NET, Python, JavaScript. Our platform is extensible for new languages as needed.</span></p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3><span lang="pt-BR">Como garantem a preservação das regras de negócio?</span><span lang="en">How do you guarantee business rules preservation?</span></h3>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p><span lang="pt-BR">Nossa GenAI analisa o código-fonte diretamente, extraindo e documentando todas as regras de negócio antes de qualquer migração. Isso garante 100% de preservação da lógica crítica, diferente de abordagens que fazem apenas "lift and shift".</span><span lang="en">Our GenAI analyzes source code directly, extracting and documenting all business rules before any migration. This guarantees 100% preservation of critical logic, unlike approaches that only do "lift and shift".</span></p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                           <h3><span lang="pt-BR">Quanto tempo leva um projeto típico?</span><span lang="en">How long does a typical project take?</span></h3>
+                           <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p><span lang="pt-BR">Projetos de modernização completa levam entre 2-4 meses, comparado aos 8-12 meses da abordagem tradicional. O Code Scan pode ser executado em horas, e o Code Analysis em algumas semanas, dependendo do tamanho da aplicação.</span><span lang="en">Complete modernization projects take 2-4 months, compared to 8-12 months of a traditional approach. Code Scan can be executed in hours, and Code Analysis in a few weeks, depending on application size.</span></p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3><span lang="pt-BR">O código gerado tem dependências proprietárias?</span><span lang="en">Does the generated code have proprietary dependencies?</span></h3>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p><span lang="pt-BR">Não. O código gerado é 100% seu, limpo e idiomático, seguindo as melhores práticas da linguagem alvo. Não há runtimes especiais, bibliotecas proprietárias ou qualquer forma de vendor lock-in.</span><span lang="en">No. The generated code is 100% yours, clean and idiomatic, following target language best practices. There are no special runtimes, proprietary libraries, or any form of vendor lock-in.</span></p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3><span lang="pt-BR">Como funciona o programa Beta?</span><span lang="en">How does the Beta program work?</span></h3>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p><span lang="pt-BR">Participantes do programa Beta recebem um Code Scan gratuito (valor de R$ 25.000), acesso prioritário a novos recursos, preços especiais e consultoria especializada. É uma oportunidade limitada para empresas pioneiras em modernização.</span><span lang="en">Beta program participants receive a free Code Scan (value of $5,000), priority access to new features, special pricing, and specialized consulting. It's a limited opportunity for pioneering companies in modernization.</span></p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                           <h3><span lang="pt-BR">Posso usar apenas alguns módulos?</span><span lang="en">Can I use only some modules?</span></h3>
+                           <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p><span lang="pt-BR">Sim! Nossa plataforma é modular e flexível. Você pode começar apenas com Code Scan para diagnóstico, evoluir para Code Analysis para documentação, e depois decidir sobre Code Transformation e Code Chat conforme sua necessidade.</span><span lang="en">Yes! Our platform is modular and flexible. You can start with just Code Scan for diagnosis, evolve to Code Analysis for documentation, and then decide on Code Transformation and Code Chat according to your needs.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção CTA -->
+        <section id="contact-cta" class="cta-section fade-in-section">
+            <div class="container">
+                <h2><span lang="pt-BR">Pronto para Transformar seu Legado?</span><span lang="en">Ready to Transform Your Legacy?</span></h2>
+                <p><span lang="pt-BR">Junte-se ao programa Beta e seja um dos primeiros a experimentar a próxima geração de modernização de legado.</span><span lang="en">Join the Beta program and be among the first to experience the next generation of legacy modernization.</span></p>
+                
+                <div class="cta-highlight">
+                    <p>
+                        <span lang="pt-BR">🎁 <strong>Oferta Beta:</strong> Code Scan gratuito (valor R$ 25.000) + Consultoria especializada</span>
+                        <span lang="en">🎁 <strong>Beta Offer:</strong> Free Code Scan (value $5,000) + Specialized consulting</span>
+                    </p>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a class="btn" data-page="contact">
+                        <span lang="pt-BR">Solicitar Code Scan Gratuito</span>
+                        <span lang="en">Request Free Code Scan</span>
+                    </a>
+                    <a href="https://calendly.com/squad-ai/demo" class="btn btn-secondary" target="_blank">
+                        <span lang="pt-BR">Agendar Demonstração</span>
+                        <span lang="en">Schedule Demo</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PÁGINA BLOG (MOCKUP) -->
+    <main id="page-blog" style="display: none;">
+        <header class="page-header">
+            <h1><span lang="pt-BR">Blog da Squad.AI</span><span lang="en">Squad.AI Blog</span></h1>
+            <p><span lang="pt-BR">Insights, artigos e notícias sobre modernização de legado, GenAI e engenharia de software.</span><span lang="en">Insights, articles, and news on legacy modernization, GenAI, and software engineering.</span></p>
+        </header>
+        <div class="page-content">
+            <div class="container">
+                <div class="blog-grid">
+                    <!-- Blog Post 1 -->
+                    <div class="blog-card">
+                        <img src="https://placehold.co/600x400/EF7722/FFFFFF?text=GenAI" alt="[Imagem do artigo sobre GenAI]">
+                        <div class="blog-card-content">
+                            <h3><span lang="pt-BR">O Futuro é Agora: Como GenAI está Revolucionando a Modernização</span><span lang="en">The Future is Now: How GenAI is Revolutionizing Modernization</span></h3>
+                            <p><span lang="pt-BR">Explore o impacto da Inteligência Artificial Generativa nos processos de migração de sistemas legados...</span><span lang="en">Explore the impact of Generative Artificial Intelligence on legacy system migration processes...</span></p>
+                            <div class="blog-card-meta"><span lang="pt-BR">Por Jane Doe - 7 Set, 2025</span><span lang="en">By Jane Doe - Sep 7, 2025</span></div>
+                        </div>
+                    </div>
+                    <!-- Blog Post 2 -->
+                    <div class="blog-card">
+                        <img src="https://placehold.co/600x400/FAA533/FFFFFF?text=COBOL" alt="[Imagem do artigo sobre COBOL]">
+                        <div class="blog-card-content">
+                            <h3><span lang="pt-BR">5 Sinais de que seu Sistema COBOL Precisa de Ajuda</span><span lang="en">5 Signs Your COBOL System Needs Help</span></h3>
+                            <p><span lang="pt-BR">Sistemas COBOL ainda rodam boa parte da economia global, mas até quando? Identifique os sinais...</span><span lang="en">COBOL systems still run a large part of the global economy, but for how long? Identify the signs...</span></p>
+                            <div class="blog-card-meta"><span lang="pt-BR">Por John Smith - 1 Set, 2025</span><span lang="en">By John Smith - Sep 1, 2025</span></div>
+                        </div>
+                    </div>
+                    <!-- Blog Post 3 -->
+                    <div class="blog-card">
+                        <img src="https://placehold.co/600x400/222222/EBEBEB?text=Cloud" alt="[Imagem do artigo sobre Cloud]">
+                        <div class="blog-card-content">
+                            <h3><span lang="pt-BR">Além do Lift & Shift: Estratégias de Migração para a Nuvem</span><span lang="en">Beyond Lift & Shift: Cloud Migration Strategies</span></h3>
+                            <p><span lang="pt-BR">Mover seu sistema para a nuvem é mais do que uma simples cópia. Entenda as diferentes abordagens...</span><span lang="en">Moving your system to the cloud is more than just a simple copy. Understand the different approaches...</span></p>
+                            <div class="blog-card-meta"><span lang="pt-BR">Por Emily White - 28 Ago, 2025</span><span lang="en">By Emily White - Aug 28, 2025</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PÁGINA CONTATO (MOCKUP) -->
+    <main id="page-contact" style="display: none;">
+        <header class="page-header">
+            <h1><span lang="pt-BR">Entre em Contato</span><span lang="en">Get in Touch</span></h1>
+            <p><span lang="pt-BR">Tem um projeto em mente ou quer saber mais sobre a Squad.AI? Fale conosco.</span><span lang="en">Have a project in mind or want to learn more about Squad.AI? Talk to us.</span></p>
+        </header>
+        <div class="page-content">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-group">
+                                <label for="name"><span lang="pt-BR">Nome</span><span lang="en">Name</span></label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><span lang="pt-BR">Email</span><span lang="en">Email</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message"><span lang="pt-BR">Mensagem</span><span lang="en">Message</span></label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn"><span lang="pt-BR">Enviar Mensagem</span><span lang="en">Send Message</span></button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h3><span lang="pt-BR">Nossas Informações</span><span lang="en">Our Information</span></h3>
+                        <p><span lang="pt-BR"><strong>Email:</strong> contato@squad.ai<br><strong>Telefone:</strong> +55 (11) 99999-8888<br><strong>Endereço:</strong> Av. Faria Lima, 4000<br>São Paulo, SP - Brasil</span><span lang="en"><strong>Email:</strong> contact@squad.ai<br><strong>Phone:</strong> +1 (555) 123-4567<br><strong>Address:</strong> 123 Tech Avenue<br>Silicon Valley, CA - USA</span></p>
+                        <p><span lang="pt-BR">Para demonstrações, você também pode agendar diretamente em nosso Calendly.</span><span lang="en">For demos, you can also book directly on our Calendly.</span></p>
+                        <a href="https://calendly.com/squad-ai/demo" class="btn btn-secondary" target="_blank">
+                            <span lang="pt-BR">Agendar Demo</span><span lang="en">Schedule Demo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PÁGINA ABOUT (MOCKUP) -->
+    <main id="page-about" style="display: none;">
+        <header class="page-header">
+            <h1><span lang="pt-BR">Sobre a Squad.AI</span><span lang="en">About Squad.AI</span></h1>
+            <p><span lang="pt-BR">Nossa missão é resgatar o valor trancado em sistemas legados, transformando-os em ativos estratégicos para o futuro.</span><span lang="en">Our mission is to unlock the value trapped in legacy systems, turning them into strategic assets for the future.</span></p>
+        </header>
+        <div class="page-content">
+            <div class="container">
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 60px auto; font-size: 1.1rem; color: var(--text-gray);">A Squad.AI nasceu da frustração de ver projetos de modernização falharem repetidamente. Abordagens tradicionais são lentas, caras e arriscadas, muitas vezes trocando um problema antigo por um novo. Acreditamos que a resposta está em entender profundamente o legado antes de transformá-lo. Usando Inteligência Artificial Generativa, nossa plataforma ilumina a "caixa-preta" dos sistemas antigos, extraindo 100% das regras de negócio e permitindo uma transição segura e eficiente para tecnologias modernas.</p>
+                
+                <!-- Página Team (embutida no About) -->
+                <div id="page-team">
+                    <h2 style="text-align: center; font-size: 2.8rem; margin-bottom: 60px;"><span lang="pt-BR">Conheça Nossa Equipe</span><span lang="en">Meet Our Team</span></h2>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <img src="https://placehold.co/120x120/EF7722/FFFFFF?text=CEO" alt="[Foto do CEO]">
+                            <h3><span lang="pt-BR">Alex Silva</span><span lang="en">Alex Smith</span></h3>
+                            <p>CEO & Founder</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="https://placehold.co/120x120/FAA533/FFFFFF?text=CTO" alt="[Foto do CTO]">
+                            <h3><span lang="pt-BR">Beatriz Costa</span><span lang="en">Betty Costa</span></h3>
+                            <p>CTO</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="https://placehold.co/120x120/222222/EBEBEB?text=CPO" alt="[Foto do CPO]">
+                            <h3><span lang="pt-BR">Carlos Pereira</span><span lang="en">Charles Perry</span></h3>
+                            <p>CPO</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="https://placehold.co/120x120/DDDDDD/222222?text=Lead" alt="[Foto do Lead Engineer]">
+                            <h3><span lang="pt-BR">Daniela Souza</span><span lang="en">Daniela Smith</span></h3>
+                            <p>Lead Engineer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PÁGINA DOCUMENTAÇÃO (MOCKUP) -->
+    <main id="page-docs" style="display: none;">
+         <header class="page-header">
+            <h1><span lang="pt-BR">Documentação</span><span lang="en">Documentation</span></h1>
+            <p><span lang="pt-BR">Guias, tutoriais e referências para integrar e utilizar a plataforma Squad.AI.</span><span lang="en">Guides, tutorials, and references for integrating and using the Squad.AI platform.</span></p>
+        </header>
+        <div class="page-content">
+            <div class="container">
+                <div class="docs-wrapper">
+                    <aside class="docs-sidebar">
+                        <h4><span lang="pt-BR">Começando</span><span lang="en">Getting Started</span></h4>
+                        <ul>
+                            <li><a href="#" class="active"><span lang="pt-BR">Introdução</span><span lang="en">Introduction</span></a></li>
+                            <li><a href="#"><span lang="pt-BR">Instalação do Agente</span><span lang="en">Agent Installation</span></a></li>
+                        </ul>
+                        <h4 style="margin-top: 24px;">Módulos</h4>
+                        <ul>
+                            <li><a href="#">Code Scan</a></li>
+                            <li><a href="#">Code Analysis</a></li>
+                            <li><a href="#">Code Transformation</a></li>
+                            <li><a href="#">Code Chat</a></li>
+                        </ul>
+                    </aside>
+                    <div class="docs-content">
+                        <h2><span lang="pt-BR">Introdução</span><span lang="en">Introduction</span></h2>
+                        <p><span lang="pt-BR">Bem-vindo à documentação da Squad.AI. Este guia irá ajudá-lo a configurar seu primeiro projeto de modernização...</span><span lang="en">Welcome to the Squad.AI documentation. This guide will help you set up your first modernization project...</span></p>
+                        <p><span lang="pt-BR">O primeiro passo é instalar nosso agente de análise no ambiente que contém seu código-fonte legado. O agente é responsável por coletar metadados e enviar para nossa plataforma de forma segura.</span><span lang="en">The first step is to install our analysis agent in the environment containing your legacy source code. The agent is responsible for collecting metadata and sending it securely to our platform.</span></p>
+                        <h2><span lang="pt-BR">Exemplo de Configuração</span><span lang="en">Configuration Example</span></h2>
+                        <p><span lang="pt-BR">Abaixo, um exemplo de arquivo de configuração <code>config.yml</code> para o agente:</span><span lang="en">Below is an example of a <code>config.yml</code> configuration file for the agent:</span></p>
+                        <pre><code>
+project_id: "your-project-id"
+api_key: "your-secret-api-key"
+source_path: "/path/to/legacy/code"
+language: "cobol"
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo" data-page="home">Squad<span class="highlight">.AI</span></div>
+                    <p><span lang="pt-BR">Transformando sistemas legados em vantagens competitivas através de GenAI e documentação inteligente.</span><span lang="en">Transforming legacy systems into competitive advantages through GenAI and intelligent documentation.</span></p>
+                    <div class="social-links">
+                        <a href="#" target="_blank" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.62 1.62 0 0013 14.19a.48.48 0 000 .26V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.93 3.36 4.45z"></path></svg>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Github">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.82c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4><span lang="pt-BR">Plataforma</span><span lang="en">Platform</span></h4>
+                    <ul>
+                        <li><a data-page="home-section" data-target="#modules"><span lang="pt-BR">Módulos</span><span lang="en">Modules</span></a></li>
+                        <li><a data-page="home-section" data-target="#methodology"><span lang="pt-BR">Metodologia</span><span lang="en">Methodology</span></a></li>
+                        <li><a data-page="home-section" data-target="#roi"><span lang="pt-BR">ROI</span><span lang="en">ROI</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4><span lang="pt-BR">Empresa</span><span lang="en">Company</span></h4>
+                    <ul>
+                        <li><a data-page="about"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a></li>
+                        <li><a data-page="contact"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a></li>
+                        <li><a data-page="blog"><span lang="pt-BR">Blog</span><span lang="en">Blog</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4><span lang="pt-BR">Suporte</span><span lang="en">Support</span></h4>
+                    <ul>
+                        <li><a data-page="home-section" data-target="#faq">FAQ</a></li>
+                        <li><a data-page="docs"><span lang="pt-BR">Documentação</span><span lang="en">Documentation</span></a></li>
+                         <li><a href="mailto:contato@squad.ai"><span lang="pt-BR">Email</span><span lang="en">Email</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Squad.AI. <span lang="pt-BR">Todos os direitos reservados.</span><span lang="en">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Lógica de Troca de Página ---
+            const pageLinks = document.querySelectorAll('[data-page]');
+            const pages = document.querySelectorAll('main[id^="page-"]');
+            const homePage = document.getElementById('page-home');
+
+            function switchPage(pageId) {
+                pages.forEach(page => {
+                    page.style.display = 'none';
+                });
+
+                const targetPage = document.getElementById(`page-${pageId}`);
+                if (targetPage) {
+                    targetPage.style.display = 'block';
+                } else {
+                    homePage.style.display = 'block'; // Fallback to home
+                }
+                window.scrollTo(0, 0);
+            }
+
+            pageLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    const targetId = this.getAttribute('data-target');
+
+                    if (pageId === 'home-section' && targetId) {
+                        // If on a different page, first switch to home
+                        if (homePage.style.display === 'none') {
+                           switchPage('home');
+                           // Use a timeout to ensure the page is visible before scrolling
+                           setTimeout(() => {
+                                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                           }, 100);
+                        } else {
+                            // Already on home page, just scroll
+                            document.querySelector(targetId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    } else {
+                        switchPage(pageId);
+                    }
+                });
+            });
+
+
+            // --- Lógica da Animação de Headline ---
+            const wordsEn = ['competitive advantage', 'business asset', 'modern architecture', 'strategic value', 'innovation driver'];
+            const wordsPt = ['vantagem competitiva', 'ativo de negócio', 'arquitetura moderna', 'valor estratégico', 'motor de inovação'];
+            
+            let currentWordIndex = 0;
+            let animationInterval;
+            
+            function startHeadlineAnimation() {
+                // Clear any existing interval to prevent multiple loops
+                if(animationInterval) clearInterval(animationInterval);
+
+                const currentLang = document.documentElement.getAttribute('lang');
+                const words = currentLang === 'pt-BR' ? wordsPt : wordsEn;
+                const dynamicWordElement = document.getElementById(currentLang === 'pt-BR' ? 'dynamic-word-pt' : 'dynamic-word-en');
+                
+                if (dynamicWordElement) {
+                    function changeWord() {
+                        dynamicWordElement.style.opacity = '0';
+                        setTimeout(() => {
+                            currentWordIndex = (currentWordIndex + 1) % words.length;
+                            dynamicWordElement.textContent = words[currentWordIndex];
+                            dynamicWordElement.style.opacity = '1';
+                        }, 400); // matches transition time
+                    }
+                    
+                    // Set the first word immediately without fade
+                    dynamicWordElement.textContent = words[currentWordIndex];
+                    dynamicWordElement.style.opacity = '1';
+                    
+                    animationInterval = setInterval(changeWord, 3000); // Troca a cada 3 segundos
+                }
+            }
+
+            // --- Lógica de Troca de Idioma ---
+            const htmlTag = document.documentElement;
+            const langPtBtn = document.getElementById('lang-pt');
+            const langEnBtn = document.getElementById('lang-en');
+
+            function setLanguage(lang) {
+                htmlTag.setAttribute('lang', lang);
+                langPtBtn.classList.toggle('active', lang === 'pt-BR');
+                langEnBtn.classList.toggle('active', lang === 'en');
+                localStorage.setItem('preferredLanguage', lang);
+                startHeadlineAnimation();
+            }
+
+            langPtBtn.addEventListener('click', () => setLanguage('pt-BR'));
+            langEnBtn.addEventListener('click', () => setLanguage('en'));
+
+            const savedLang = localStorage.getItem('preferredLanguage');
+            const browserLang = navigator.language.startsWith('pt') ? 'pt-BR' : 'en';
+            setLanguage(savedLang || browserLang);
+
+            // --- Lógica da Animação de Scroll ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- Lógica do Acordeão do FAQ ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Opcional: Fechar outros itens abertos
+                    // faqItems.forEach(otherItem => {
+                    //    otherItem.classList.remove('active');
+                    // });
+
+                    if (!isActive) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
